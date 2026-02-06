@@ -1,0 +1,8 @@
+### PRE NPM PATCH AUTHORING
+COPY --from=ai-badges-frontend / /openedx/ai-badges-frontend
+
+WORKDIR /openedx/ai-badges-frontend
+RUN npm install && npm run build
+WORKDIR /openedx/app
+##
+

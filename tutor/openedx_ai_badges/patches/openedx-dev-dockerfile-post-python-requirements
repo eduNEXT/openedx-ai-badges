@@ -1,0 +1,6 @@
+# Patch openedx-dev-dockerfile-post-python-requirements used for openedx-ai-badges
+
+COPY --from=ai-badges-backend / /openedx/ai-badges-backend
+USER root
+RUN pip install -e /openedx/ai-badges-backend
+USER app
