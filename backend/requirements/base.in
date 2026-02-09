@@ -1,7 +1,9 @@
 # Core requirements for using this application
--c constraints.txt
-
 Django             # Web application framework
 djangorestframework  # REST API framework
 django-filter      # Filtering for DRF
 edx-opaque-keys        # Open edX CourseKeyField
+openedx-events         # Be able to listen to openedx events and respond to them.
+openedx-filters        # Be able to hook into openedx filters and change behavior.
+
+openedx-atlas      # For translations related tooling
