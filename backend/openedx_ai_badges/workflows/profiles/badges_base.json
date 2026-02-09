@@ -1,0 +1,27 @@
+{
+  "orchestrator_class": "openedx_ai_badges.workflows.orchestrators.BadgeOrchestrator",
+  "processor_config": {
+      "BadgeProcessor": {
+          "function": "generate_badgeclass",
+          "provider": "openai",
+      }
+  },
+  "actuator_config": {
+    "UIComponents": {
+      "request": {
+        "component": "AIRequestBadgesComponent",
+        "config": {
+          "buttonText": "+",
+          "customMessage": "Generate a badge for this course"
+        }
+      },
+      "response": {
+        "component": "AIResponseComponent",
+        "config": {
+          "customMessage": ""
+        }
+      }
+    }
+  },
+  "schema_version": "1.0",
+}
