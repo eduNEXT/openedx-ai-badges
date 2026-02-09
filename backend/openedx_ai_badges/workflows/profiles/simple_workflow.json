@@ -1,0 +1,23 @@
+{
+  "orchestrator_class": "openedx_ai_badges.workflows.orquestators.SimpleMockOrquestator",
+  "processor_config": {
+  },
+  "actuator_config": {
+    "UIComponents": {
+      "request": {
+        "component": "AIRequestComponent",
+        "config": {
+          "buttonText": "Ask test AI [mocked from badges]",
+          "customMessage": "An inmediate test response from the server"
+        }
+      },
+      "response": {
+        "component": "AISidebarResponse",
+        "config": {
+          "customMessage": "Sidebar Response [mocked]"
+        }
+      }
+    }
+  },
+  "schema_version": "1.0",
+}
