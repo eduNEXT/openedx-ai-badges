@@ -5,7 +5,7 @@
   "actuator_config": {
     "UIComponents": {
       "request": {
-        "component": "AIRequestComponent",
+        "component": "AIRequestBadgesComponent",
         "config": {
           "buttonText": "Ask test AI [mocked from badges]",
           "customMessage": "An inmediate test response from the server"

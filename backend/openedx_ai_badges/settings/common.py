@@ -22,7 +22,6 @@ def plugin_settings(settings):
     # -------------------------
     # Extend workflow template directories
     # -------------------------
-    logger.info("Adding ai-badges workflow template directories to settings--------------------------------------------------------")
     if not hasattr(settings, "WORKFLOW_TEMPLATE_DIRS"):
         settings.WORKFLOW_TEMPLATE_DIRS = []
 
