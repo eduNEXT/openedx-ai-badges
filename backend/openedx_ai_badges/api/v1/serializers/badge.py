@@ -1,3 +1,4 @@
+from django.utils.text import slugify
 from rest_framework import serializers
 from openedx_ai_badges.models import BadgeClass
 
@@ -33,6 +34,7 @@ class BadgeClassWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = BadgeClass
         fields = "__all__"
+        read_only_fields = ["slug", "issuer"]
 
     def validate(self, data):
         if self.instance and self.instance.is_published:
@@ -40,3 +42,8 @@ class BadgeClassWriteSerializer(serializers.ModelSerializer):
                 "Published BadgeClass cannot be modified."
             )
         return data
+
+    def create(self, validated_data):
+        if "slug" not in validated_data or not validated_data.get("slug"):
+            validated_data["slug"] = slugify(validated_data["name"])
+        return super().create(validated_data)

@@ -1,0 +1,27 @@
+{
+  "orchestrator_class": "openedx_ai_badges.workflows.orquestators.BadgeOrquestator",
+  "processor_config": {
+      "BadgeProcessor": {
+          "function": "generate_badgeclass",
+          "provider": "openai",
+        }
+  },
+  "actuator_config": {
+    "UIComponents": {
+      "request": {
+        "component": "AIRequestBadgesComponent",
+        "config": {
+          "buttonText": "Generate a badge for this course",
+          "customMessage": "Click the button to generate a badge for this course using AI. The badge will be created in the system and you will receive a confirmation message."
+        }
+      },
+      "response": {
+        "component": "AIResponseComponent",
+        "config": {
+          "customMessage": "The response from AI"
+        }
+      }
+    }
+  },
+  "schema_version": "1.0",
+}
