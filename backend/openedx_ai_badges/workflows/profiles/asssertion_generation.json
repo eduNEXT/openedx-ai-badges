@@ -1,9 +1,7 @@
 {
-  "orchestrator_class": "openedx_ai_badges.workflows.orquestators.BadgeOrquestator",
+  "orchestrator_class": "openedx_ai_badges.workflows.orquestators.BadgeAssertionOrquestator",
   "processor_config": {
       "BadgeProcessor": {
-          "function": "generate_badgeclass",
-          "provider": "openai",
       }
   },
   "actuator_config": {
@@ -12,7 +10,7 @@
         "component": "AIRequestBadgesComponent",
         "config": {
           "buttonText": "+",
-          "customMessage": "Generate a badge for this course"
+          "customMessage": "Generate a certificate for this course"
         }
       },
       "response": {

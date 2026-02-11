@@ -8,7 +8,7 @@ import time
 from openedx_ai_extensions.workflows.orchestrators import BaseOrchestrator
 from ..processors.badge_processor import BadgeProcessor
 from openedx_ai_badges.api.v1.serializers.badge import BadgeClassWriteSerializer
-from openedx_ai_badges.models import Issuer
+from openedx_ai_badges.models import Issuer, BadgeClass, issue_assertion_for_email
 
 logger = logging.getLogger(__name__)
 
@@ -71,8 +71,26 @@ class BadgeOrquestator(BaseOrchestrator):
         #3. Serialize and create BadgeClass with the result
         serializer = BadgeClassWriteSerializer(data=response)
         serializer.is_valid(raise_exception=True)
-        serializer.save(issuer=issuer)
+        serializer.save(issuer=issuer, course_id=self.course_id)
         return {
             "response": "BadgeClass created successfully",
             "status": "completed",
         }
+
+class BadgeAssertionOrquestator(BaseOrchestrator):
+    """
+    Complete mock orchestrator for badge assertion.
+    """
+
+    def run(self, input_data):
+        existing_badge = BadgeClass.objects.filter(course_id=self.course_id).first()
+        if existing_badge:
+            assertion = issue_assertion_for_email(
+                badge_slug=existing_badge.slug,
+                badge_version=existing_badge.version,
+                user=self.user,
+            )
+            return {
+                "response": f"Certificate Generated Sucessfully! You can import you badge with this (Link)[{assertion.assertion_id()}]",
+                "status": "completed",
+            }
