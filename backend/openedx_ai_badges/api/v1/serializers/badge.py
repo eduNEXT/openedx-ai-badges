@@ -7,10 +7,13 @@ class BadgeClassPublicSerializer(serializers.ModelSerializer):
     id = serializers.SerializerMethodField()
     type = serializers.SerializerMethodField()
     issuer = serializers.SerializerMethodField()
+    context = serializers.SerializerMethodField()
+    image = serializers.SerializerMethodField()
 
     class Meta:
         model = BadgeClass
         fields = [
+            "context",
             "id",
             "type",
             "name",
@@ -18,6 +21,7 @@ class BadgeClassPublicSerializer(serializers.ModelSerializer):
             "criteria",
             "issuer",
             "skills",
+            "image",
         ]
 
     def get_id(self, obj):
@@ -28,6 +32,17 @@ class BadgeClassPublicSerializer(serializers.ModelSerializer):
 
     def get_issuer(self, obj):
         return obj.issuer.json_url()
+
+    def get_context(self, obj):
+        return "https://w3id.org/openbadges/v2"
+
+    def get_image(self, obj):
+        return f"{obj.issuer.url}/badges/{obj.slug}.svg"
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['@context'] = data.pop('context')
+        return data
 
 
 class BadgeClassWriteSerializer(serializers.ModelSerializer):
