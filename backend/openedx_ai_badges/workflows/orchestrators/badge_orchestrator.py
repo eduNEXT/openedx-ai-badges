@@ -8,7 +8,6 @@ import time
 from openedx_ai_extensions.workflows.orchestrators import BaseOrchestrator
 from ..processors.badge_processor import BadgeProcessor
 from openedx_ai_badges.api.v1.serializers.badge import BadgeClassWriteSerializer
-from openedx_ai_badges.models import Issuer, BadgeClass, issue_assertion_for_email
 
 logger = logging.getLogger(__name__)
 
@@ -52,7 +51,7 @@ MOCK_COURSE_CONTEXT = {
 }
 
 
-class BadgeOrquestator(BaseOrchestrator):
+class BadgeOrchestrator(BaseOrchestrator):
     """
     Complete mock orchestrator.
     Responds inmediately with a mock answer. Useful for UI testing.
@@ -64,33 +63,14 @@ class BadgeOrquestator(BaseOrchestrator):
 
         #2. Process badge class definition
         badge_processor = BadgeProcessor(self.profile.processor_config)
-        issuer = Issuer.objects.first()  # TODO handle issuer selection properly
         llm_result = badge_processor.process(context=str(course_context))
         response = json.loads(llm_result.get("response", "{}"))
 
         #3. Serialize and create BadgeClass with the result
         serializer = BadgeClassWriteSerializer(data=response)
         serializer.is_valid(raise_exception=True)
-        serializer.save(issuer=issuer, course_id=self.course_id)
+        serializer.save(course_id=self.course_id)
         return {
             "response": "BadgeClass created successfully",
             "status": "completed",
         }
-
-class BadgeAssertionOrquestator(BaseOrchestrator):
-    """
-    Complete mock orchestrator for badge assertion.
-    """
-
-    def run(self, input_data):
-        existing_badge = BadgeClass.objects.filter(course_id=self.course_id).first()
-        if existing_badge:
-            assertion = issue_assertion_for_email(
-                badge_slug=existing_badge.slug,
-                badge_version=existing_badge.version,
-                user=self.user,
-            )
-            return {
-                "response": f"Certificate Generated Sucessfully! You can import you badge with this (Link)[{assertion.assertion_id()}]",
-                "status": "completed",
-            }

@@ -6,7 +6,6 @@ from openedx_ai_badges.models import BadgeClass
 class BadgeClassPublicSerializer(serializers.ModelSerializer):
     id = serializers.SerializerMethodField()
     type = serializers.SerializerMethodField()
-    issuer = serializers.SerializerMethodField()
     context = serializers.SerializerMethodField()
     image = serializers.SerializerMethodField()
 
@@ -19,7 +18,6 @@ class BadgeClassPublicSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "criteria",
-            "issuer",
             "skills",
             "image",
         ]
@@ -30,14 +28,11 @@ class BadgeClassPublicSerializer(serializers.ModelSerializer):
     def get_type(self, obj):
         return "BadgeClass"
 
-    def get_issuer(self, obj):
-        return obj.issuer.json_url()
-
     def get_context(self, obj):
         return "https://w3id.org/openbadges/v2"
 
     def get_image(self, obj):
-        return f"{obj.issuer.url}/badges/{obj.slug}.svg"
+        return f"http://local.openedx.io:8000/badges/{obj.slug}.svg"
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
@@ -49,7 +44,7 @@ class BadgeClassWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = BadgeClass
         fields = "__all__"
-        read_only_fields = ["slug", "issuer"]
+        read_only_fields = ["slug"]
 
     def validate(self, data):
         if self.instance and self.instance.is_published:

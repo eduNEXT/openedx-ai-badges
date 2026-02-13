@@ -1,5 +1,5 @@
 {
-  "orchestrator_class": "openedx_ai_badges.workflows.orquestators.BadgeOrquestator",
+  "orchestrator_class": "openedx_ai_badges.workflows.orchestrators.BadgeOrchestrator",
   "processor_config": {
       "BadgeProcessor": {
           "function": "generate_badgeclass",
