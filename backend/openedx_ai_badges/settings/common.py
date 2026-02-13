@@ -18,3 +18,14 @@ def plugin_settings(settings):
     Args:
         settings (dict): Django settings object
     """
+
+    # -------------------------
+    # Extend workflow template directories
+    # -------------------------
+    if not hasattr(settings, "WORKFLOW_TEMPLATE_DIRS"):
+        settings.WORKFLOW_TEMPLATE_DIRS = []
+
+    # Add ai-badges workflow profiles directory
+    badges_workflow_dir = BASE_DIR / "workflows" / "profiles"
+    if badges_workflow_dir not in settings.WORKFLOW_TEMPLATE_DIRS:
+        settings.WORKFLOW_TEMPLATE_DIRS.append(badges_workflow_dir)
