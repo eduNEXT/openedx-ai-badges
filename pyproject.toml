@@ -26,6 +26,7 @@ classifiers = [
 dependencies = [
     "tutor>=20.0.0,<21.0.0",
     "tutor-mfe>=20.0.0,<21.0.0",
+    "openedx-ai-extensions @ git+https://github.com/openedx/openedx-ai-extensions.git",
 ]
 
 # these fields will be set by .hatch_build.py
