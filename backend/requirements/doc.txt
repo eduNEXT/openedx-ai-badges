@@ -6,73 +6,199 @@
 #
 accessible-pygments==0.0.5
     # via pydata-sphinx-theme
+aiohappyeyeballs==2.6.1
+    # via
+    #   -r requirements/test.txt
+    #   aiohttp
+aiohttp==3.13.3
+    # via
+    #   -r requirements/test.txt
+    #   litellm
+aiosignal==1.4.0
+    # via
+    #   -r requirements/test.txt
+    #   aiohttp
 alabaster==1.0.0
     # via sphinx
+amqp==5.3.1
+    # via
+    #   -r requirements/test.txt
+    #   kombu
+aniso8601==10.0.1
+    # via
+    #   -r requirements/test.txt
+    #   tincan
+annotated-doc==0.0.4
+    # via
+    #   -r requirements/test.txt
+    #   typer
+annotated-types==0.7.0
+    # via
+    #   -r requirements/test.txt
+    #   pydantic
 anyio==4.12.1
     # via
+    #   -r requirements/test.txt
+    #   httpx
+    #   openai
     #   starlette
     #   watchfiles
+apache-libcloud==3.9.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-event-routing-backends
 asgiref==3.11.1
     # via
     #   -r requirements/test.txt
     #   django
+attrs==25.4.0
+    # via
+    #   -r requirements/test.txt
+    #   aiohttp
+    #   jsonschema
+    #   openedx-events
+    #   referencing
 babel==2.17.0
     # via
     #   pydata-sphinx-theme
     #   sphinx
 beautifulsoup4==4.14.3
-    # via pydata-sphinx-theme
+    # via
+    #   -r requirements/test.txt
+    #   openedx-ai-extensions
+    #   pydata-sphinx-theme
+billiard==4.2.4
+    # via
+    #   -r requirements/test.txt
+    #   celery
 build==1.3.0
     # via -r requirements/doc.in
-certifi==2025.11.12
-    # via requests
+celery==5.6.2
+    # via
+    #   -r requirements/test.txt
+    #   edx-celeryutils
+    #   event-tracking
+certifi==2026.1.4
+    # via
+    #   -r requirements/test.txt
+    #   httpcore
+    #   httpx
+    #   requests
 cffi==2.0.0
     # via
     #   -r requirements/test.txt
     #   cryptography
     #   pynacl
 charset-normalizer==3.4.4
-    # via requests
+    # via
+    #   -r requirements/test.txt
+    #   requests
 click==8.3.1
     # via
     #   -r requirements/test.txt
+    #   celery
+    #   click-didyoumean
+    #   click-plugins
+    #   click-repl
     #   code-annotations
     #   edx-django-utils
+    #   litellm
+    #   typer
     #   uvicorn
-code-annotations==1.8.2
-    # via -r requirements/test.txt
+click-didyoumean==0.3.1
+    # via
+    #   -r requirements/test.txt
+    #   celery
+click-plugins==1.1.1.2
+    # via
+    #   -r requirements/test.txt
+    #   celery
+click-repl==0.3.0
+    # via
+    #   -r requirements/test.txt
+    #   celery
+code-annotations==2.3.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-toggles
 colorama==0.4.6
     # via sphinx-autobuild
 coverage[toml]==7.13.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==46.0.3
-    # via secretstorage
+cryptography==46.0.5
+    # via
+    #   -r requirements/test.txt
+    #   django-fernet-fields-v2
+    #   secretstorage
+distro==1.9.0
+    # via
+    #   -r requirements/test.txt
+    #   openai
 django==4.2.28
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
+    #   django-config-models
     #   django-crum
     #   django-extensions
+    #   django-fernet-fields-v2
     #   django-filter
+    #   django-model-utils
+    #   django-redis
     #   django-waffle
     #   djangorestframework
+    #   edx-celeryutils
+    #   edx-django-release-util
     #   edx-django-utils
+    #   edx-event-routing-backends
+    #   edx-submissions
+    #   edx-toggles
+    #   event-tracking
+    #   jsonfield
+    #   openedx-ai-extensions
+    #   openedx-events
+    #   openedx-filters
+django-config-models==2.9.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-event-routing-backends
 django-crum==0.7.9
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
+    #   edx-toggles
 django-extensions==4.1
     # via -r requirements/test.txt
+django-fernet-fields-v2==0.9
+    # via
+    #   -r requirements/test.txt
+    #   edx-event-routing-backends
 django-filter==25.1
-    # via -r requirements/test.txt
+    # via
+    #   -r requirements/test.txt
+    #   openedx-ai-extensions
+django-model-utils==5.0.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-celeryutils
+    #   edx-submissions
+django-redis==6.0.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-event-routing-backends
 django-waffle==5.0.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
+    #   edx-toggles
 djangorestframework==3.16.1
-    # via -r requirements/test.txt
+    # via
+    #   -r requirements/test.txt
+    #   django-config-models
+    #   edx-submissions
+    #   openedx-ai-extensions
 dnspython==2.8.0
     # via
     #   -r requirements/test.txt
@@ -86,24 +212,125 @@ docutils==0.21.2
     #   readme-renderer
     #   restructuredtext-lint
     #   sphinx
+edx-ccx-keys==2.0.2
+    # via
+    #   -r requirements/test.txt
+    #   openedx-events
+edx-celeryutils==1.4.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-event-routing-backends
+edx-django-release-util==1.5.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-submissions
 edx-django-utils==8.0.1
-    # via -r requirements/test.txt
-edx-opaque-keys==3.0.0
-    # via -r requirements/test.txt
+    # via
+    #   -r requirements/test.txt
+    #   django-config-models
+    #   edx-toggles
+    #   event-tracking
+    #   openedx-events
+edx-event-routing-backends==9.3.8
+    # via
+    #   -r requirements/test.txt
+    #   openedx-ai-extensions
+edx-opaque-keys[django]==3.0.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-ccx-keys
+    #   openedx-ai-extensions
+    #   openedx-events
+    #   openedx-filters
+edx-submissions==3.12.2
+    # via
+    #   -r requirements/test.txt
+    #   openedx-ai-extensions
+edx-toggles==5.4.1
+    # via
+    #   -r requirements/test.txt
+    #   edx-event-routing-backends
+    #   event-tracking
+event-tracking==3.3.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-event-routing-backends
+    #   openedx-ai-extensions
+fastavro==1.12.1
+    # via
+    #   -r requirements/test.txt
+    #   openedx-events
+fasteners==0.20
+    # via
+    #   -r requirements/test.txt
+    #   edx-event-routing-backends
+fastuuid==0.14.0
+    # via
+    #   -r requirements/test.txt
+    #   litellm
+filelock==3.24.2
+    # via
+    #   -r requirements/test.txt
+    #   huggingface-hub
+frozenlist==1.8.0
+    # via
+    #   -r requirements/test.txt
+    #   aiohttp
+    #   aiosignal
+fsspec==2026.2.0
+    # via
+    #   -r requirements/test.txt
+    #   huggingface-hub
+grpcio==1.78.0
+    # via
+    #   -r requirements/test.txt
+    #   litellm
 h11==0.16.0
-    # via uvicorn
+    # via
+    #   -r requirements/test.txt
+    #   httpcore
+    #   uvicorn
+hf-xet==1.2.0
+    # via
+    #   -r requirements/test.txt
+    #   huggingface-hub
+httpcore==1.0.9
+    # via
+    #   -r requirements/test.txt
+    #   httpx
+httpx==0.28.1
+    # via
+    #   -r requirements/test.txt
+    #   huggingface-hub
+    #   litellm
+    #   openai
+huggingface-hub==1.4.1
+    # via
+    #   -r requirements/test.txt
+    #   tokenizers
 id==1.5.0
     # via twine
 idna==3.11
     # via
+    #   -r requirements/test.txt
     #   anyio
+    #   httpx
     #   requests
+    #   yarl
 imagesize==1.4.1
     # via sphinx
+importlib-metadata==8.7.1
+    # via
+    #   -r requirements/test.txt
+    #   litellm
 iniconfig==2.3.0
     # via
     #   -r requirements/test.txt
     #   pytest
+isodate==0.7.2
+    # via
+    #   -r requirements/test.txt
+    #   edx-event-routing-backends
 jaraco-classes==3.4.0
     # via keyring
 jaraco-context==6.0.1
@@ -118,27 +345,93 @@ jinja2==3.1.6
     # via
     #   -r requirements/test.txt
     #   code-annotations
+    #   litellm
     #   sphinx
+jiter==0.13.0
+    # via
+    #   -r requirements/test.txt
+    #   openai
+json5==0.13.0
+    # via
+    #   -r requirements/test.txt
+    #   openedx-ai-extensions
+jsonfield==3.2.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-celeryutils
+    #   edx-event-routing-backends
+    #   edx-submissions
+jsonmerge==1.9.2
+    # via
+    #   -r requirements/test.txt
+    #   openedx-ai-extensions
+jsonschema==4.26.0
+    # via
+    #   -r requirements/test.txt
+    #   jsonmerge
+    #   litellm
+    #   openedx-ai-extensions
+jsonschema-specifications==2025.9.1
+    # via
+    #   -r requirements/test.txt
+    #   jsonschema
 keyring==25.7.0
     # via twine
+kombu==5.6.2
+    # via
+    #   -r requirements/test.txt
+    #   celery
+litellm==1.80.16
+    # via
+    #   -r requirements/test.txt
+    #   openedx-ai-extensions
 markdown-it-py==4.0.0
-    # via rich
+    # via
+    #   -r requirements/test.txt
+    #   rich
 markupsafe==3.0.3
     # via
     #   -r requirements/test.txt
     #   jinja2
 mdurl==0.1.2
-    # via markdown-it-py
+    # via
+    #   -r requirements/test.txt
+    #   markdown-it-py
 more-itertools==10.8.0
     # via
     #   jaraco-classes
     #   jaraco-functools
+multidict==6.7.1
+    # via
+    #   -r requirements/test.txt
+    #   aiohttp
+    #   yarl
 nh3==0.3.2
     # via readme-renderer
-packaging==25.0
+openai==2.21.0
+    # via
+    #   -r requirements/test.txt
+    #   litellm
+openedx-ai-extensions @ git+https://github.com/openedx/openedx-ai-extensions#subdirectory=backend
+    # via -r requirements/test.txt
+openedx-atlas==0.7.0
+    # via
+    #   -r requirements/test.txt
+    #   openedx-ai-extensions
+openedx-events==10.5.0
+    # via
+    #   -r requirements/test.txt
+    #   event-tracking
+openedx-filters==2.1.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-event-routing-backends
+packaging==26.0
     # via
     #   -r requirements/test.txt
     #   build
+    #   huggingface-hub
+    #   kombu
     #   pydata-sphinx-theme
     #   pytest
     #   sphinx
@@ -148,14 +441,32 @@ pluggy==1.6.0
     #   -r requirements/test.txt
     #   pytest
     #   pytest-cov
-psutil==7.1.3
+prompt-toolkit==3.0.52
+    # via
+    #   -r requirements/test.txt
+    #   click-repl
+propcache==0.4.1
+    # via
+    #   -r requirements/test.txt
+    #   aiohttp
+    #   yarl
+psutil==7.2.2
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pycparser==2.23
+pycparser==3.0
     # via
     #   -r requirements/test.txt
     #   cffi
+pydantic==2.12.5
+    # via
+    #   -r requirements/test.txt
+    #   litellm
+    #   openai
+pydantic-core==2.41.5
+    # via
+    #   -r requirements/test.txt
+    #   pydantic
 pydata-sphinx-theme==0.15.4
     # via sphinx-book-theme
 pygments==2.19.2
@@ -172,7 +483,8 @@ pymongo==4.16.0
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
-pynacl==1.6.1
+    #   event-tracking
+pynacl==1.6.2
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -187,21 +499,56 @@ pytest-cov==7.0.0
     # via -r requirements/test.txt
 pytest-django==4.11.1
     # via -r requirements/test.txt
+python-dateutil==2.9.0.post0
+    # via
+    #   -r requirements/test.txt
+    #   celery
+    #   edx-event-routing-backends
+python-dotenv==1.2.1
+    # via
+    #   -r requirements/test.txt
+    #   litellm
 python-slugify==8.0.4
     # via
     #   -r requirements/test.txt
     #   code-annotations
+pytz==2025.2
+    # via
+    #   -r requirements/test.txt
+    #   edx-event-routing-backends
+    #   edx-submissions
+    #   event-tracking
+    #   tincan
 pyyaml==6.0.3
     # via
     #   -r requirements/test.txt
     #   code-annotations
+    #   edx-django-release-util
+    #   huggingface-hub
 readme-renderer==44.0
     # via twine
+redis==7.2.0
+    # via
+    #   -r requirements/test.txt
+    #   django-redis
+referencing==0.37.0
+    # via
+    #   -r requirements/test.txt
+    #   jsonschema
+    #   jsonschema-specifications
+regex==2026.1.15
+    # via
+    #   -r requirements/test.txt
+    #   tiktoken
 requests==2.32.5
     # via
+    #   -r requirements/test.txt
+    #   apache-libcloud
+    #   edx-event-routing-backends
     #   id
     #   requests-toolbelt
     #   sphinx
+    #   tiktoken
     #   twine
 requests-toolbelt==1.0.0
     # via twine
@@ -209,14 +556,40 @@ restructuredtext-lint==2.0.2
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==14.2.0
-    # via twine
+rich==14.3.2
+    # via
+    #   -r requirements/test.txt
+    #   twine
+    #   typer
+rpds-py==0.30.0
+    # via
+    #   -r requirements/test.txt
+    #   jsonschema
+    #   referencing
 secretstorage==3.5.0
     # via keyring
+shellingham==1.5.4
+    # via
+    #   -r requirements/test.txt
+    #   huggingface-hub
+    #   typer
+six==1.17.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-ccx-keys
+    #   edx-django-release-util
+    #   event-tracking
+    #   python-dateutil
+sniffio==1.3.1
+    # via
+    #   -r requirements/test.txt
+    #   openai
 snowballstemmer==3.0.1
     # via sphinx
-soupsieve==2.8.1
-    # via beautifulsoup4
+soupsieve==2.8.3
+    # via
+    #   -r requirements/test.txt
+    #   beautifulsoup4
 sphinx==8.1.3
     # via
     #   -r requirements/doc.in
@@ -256,23 +629,90 @@ text-unidecode==1.3
     # via
     #   -r requirements/test.txt
     #   python-slugify
+tiktoken==0.12.0
+    # via
+    #   -r requirements/test.txt
+    #   litellm
+tincan==1.0.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-event-routing-backends
+tokenizers==0.22.2
+    # via
+    #   -r requirements/test.txt
+    #   litellm
+tqdm==4.67.3
+    # via
+    #   -r requirements/test.txt
+    #   huggingface-hub
+    #   openai
 twine==6.2.0
     # via -r requirements/doc.in
+typer==0.24.0
+    # via
+    #   -r requirements/test.txt
+    #   typer-slim
+typer-slim==0.24.0
+    # via
+    #   -r requirements/test.txt
+    #   huggingface-hub
 typing-extensions==4.15.0
     # via
     #   -r requirements/test.txt
+    #   aiosignal
     #   anyio
     #   beautifulsoup4
     #   edx-opaque-keys
+    #   grpcio
+    #   huggingface-hub
+    #   openai
+    #   pydantic
+    #   pydantic-core
     #   pydata-sphinx-theme
+    #   referencing
     #   starlette
-urllib3==2.6.2
+    #   typing-inspection
+typing-inspection==0.4.2
     # via
+    #   -r requirements/test.txt
+    #   pydantic
+tzdata==2025.3
+    # via
+    #   -r requirements/test.txt
+    #   kombu
+tzlocal==5.3.1
+    # via
+    #   -r requirements/test.txt
+    #   celery
+urllib3==2.6.3
+    # via
+    #   -r requirements/test.txt
     #   requests
     #   twine
 uvicorn==0.40.0
     # via sphinx-autobuild
+vine==5.1.0
+    # via
+    #   -r requirements/test.txt
+    #   amqp
+    #   celery
+    #   kombu
 watchfiles==1.1.1
     # via sphinx-autobuild
+wcwidth==0.6.0
+    # via
+    #   -r requirements/test.txt
+    #   prompt-toolkit
 websockets==16.0
     # via sphinx-autobuild
+yarl==1.22.0
+    # via
+    #   -r requirements/test.txt
+    #   aiohttp
+zipp==3.23.0
+    # via
+    #   -r requirements/test.txt
+    #   importlib-metadata
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools

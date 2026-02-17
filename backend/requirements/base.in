@@ -5,3 +5,5 @@ Django             # Web application framework
 djangorestframework  # REST API framework
 django-filter      # Filtering for DRF
 edx-opaque-keys        # Open edX CourseKeyField
+# Open edX AI Extensions - for AI-powered features in Open edX
+git+https://github.com/openedx/openedx-ai-extensions#egg=openedx_ai_extensions&subdirectory=backend
