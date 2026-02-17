@@ -4,8 +4,9 @@ Simple Custom Orchestrator - Demonstrates orchestrator pattern
 import json
 import logging
 
-from openedx_ai_extensions.processors import LLMProcessor
+# pylint: disable=import-error
 from openedx_ai_extensions.workflows.orchestrators.session_based_orchestrator import SessionBasedOrchestrator
+
 from ..processors.badge_processor import BadgeProcessor
 
 logger = logging.getLogger(__name__)
@@ -64,7 +65,16 @@ class BadgeOrchestrator(SessionBasedOrchestrator):
     Responds inmediately with a mock answer. Useful for UI testing.
     """
 
-    def run(self, input_data):
+    def run(self, input_data):  # pylint: disable=unused-argument
+        """
+        Execute the badge generation workflow.
+
+        Args:
+            input_data: Input data for the orchestrator (currently unused as we use course context)
+
+        Returns:
+            dict: Response containing the generated badge and status
+        """
         if self.session.metadata.get('badge'):
             badge = self.session.metadata['badge']
             return {

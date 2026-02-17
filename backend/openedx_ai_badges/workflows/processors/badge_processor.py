@@ -1,8 +1,24 @@
-from openedx_ai_extensions.processors import LLMProcessor
+"""
+Badge processor module for generating Open Badges 2.0 BadgeClass definitions.
+"""
+from openedx_ai_extensions.processors import LLMProcessor  # pylint: disable=import-error
+
 
 class BadgeProcessor(LLMProcessor):
+    """
+    Processor for generating BadgeClass definitions using LLM.
+
+    This processor generates Open Badges 2.0 compliant BadgeClass definitions
+    based on course context information.
+    """
 
     def generate_badgeclass(self):
+        """
+        Generate a BadgeClass definition based on course context.
+
+        Returns:
+            dict: LLM response containing the generated BadgeClass JSON
+        """
         system_role = """
             Based on the course context above, generate a BadgeClass definition following
             the Open Badges 2.0 specification.
