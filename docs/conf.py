@@ -56,6 +56,7 @@ def get_version(*file_paths):
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO_ROOT)
+sys.path.insert(0, os.path.join(REPO_ROOT, 'backend'))
 
 VERSION = get_version('../backend/openedx_ai_badges', '__init__.py')
 # Configure Django for autodoc usage
@@ -152,6 +153,8 @@ exclude_patterns = [
     # This file is intended as a guide for developers browsing the source tree,
     # not to be rendered into the output docs.
     'decisions/README.rst',
+    # Exclude modules.rst as it's auto-generated and not needed in toctree
+    'modules.rst',
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
