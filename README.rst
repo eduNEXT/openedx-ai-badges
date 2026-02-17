@@ -20,7 +20,7 @@ AI Badges Generator
 Overview
 ********
 
-**openedx-ai-badges** is an AI-powered badge generation tool built as an extension of the `openedx-ai-extensions` framework. This project serves as a practical implementation of extending the Open edX AI infrastructure by registering new orchestrators, processors, UI slots, and AI profiles.
+**openedx-ai-badges** is an AI-powered badge generation tool built as an extension of the `openedx-ai-extensions <https://github.com/openedx/openedx-ai-extensions>`_ framework. This project serves as a practical implementation of extending the Open edX AI infrastructure by registering new orchestrators, processors, UI slots, and AI profiles.
 
 With this plugin, we demonstrate the modularity of the AI framework by extending orchestrators, processors, and actuators to handle custom badge-related logic.
 
@@ -67,14 +67,23 @@ Usage
 The **openedx-ai-badges** plugin extends the base AI framework by providing specialized badge-generation workflows. To use it:
 
 1. **Configure Providers**: Ensure you have configured your AI providers as described in the `AI Extensions Configuration Guide <https://docs.openedx.org/projects/openedx-ai-extensions/en/latest/quickstarts/configuration_guide.html#configuring-providers>`_.
-2. **Setup AI Profile**: 
+
+2. **Setup AI Profile**:
+
    - Go to the Django Admin.
+
    - Create or edit an AI **Profile** and set the implementation to ``badges_base``.
-3. **Assign Scope**: 
+
+3. **Assign Scope**:
+
    - Create an AI **Scope** (e.g., for CMS/Studio).
+
    - Link the scope to your ``badges_base`` profile.
-4. **Trigger Generation**: 
+
+4. **Trigger Generation**:
+
    - Enter the CMS. You will see a new UI element: "Generate a badge for this course".
+
    - Click the button to trigger the custom **Orchestrator** and **Actuators**.
 
 Setting Up Development Environment
@@ -84,7 +93,7 @@ To set up a development environment for both the backend and the UI components:
 
 **1. Micro-Frontend (MFE) Registration**
 
-You must manually register the badges UI package in your MFE configuration:
+You must manually register the badges UI package in your MFE configuration (For Authoring and Learning MFEs):
 
 * In your ``module.config.js``, add the entry for ``openedx-ai-badges``.
 
@@ -115,7 +124,7 @@ You must manually register the badges UI package in your MFE configuration:
 
 **2. Backend Development**
 
-Install the package in editable mode within your tutor environment:
+Install the package in editable mode within your tutor environment (In the LMS and CMS containers):
 
 .. code-block:: bash
 
