@@ -36,6 +36,7 @@ release = 'latest'
 autodoc_mock_imports = [
     "openedx",
     "common",
+    "openedx_ai_extensions",
 ]
 
 def get_version(*file_paths):
