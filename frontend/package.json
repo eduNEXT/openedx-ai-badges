@@ -24,7 +24,6 @@
   "peerDependencies": {
     "@edx/frontend-platform": "^7.0.0 || ^8.0.0",
     "@openedx/paragon": "^21.0.0 || ^22.0.0 || ^23.0.0",
-    "@openedx/openedx-ai-extensions-ui": "^0.0.1",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
