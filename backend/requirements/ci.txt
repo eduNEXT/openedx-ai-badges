@@ -12,11 +12,11 @@ colorama==0.4.6
     # via tox
 distlib==0.4.0
     # via virtualenv
-filelock==3.24.2
+filelock==3.20.1
     # via
     #   tox
     #   virtualenv
-packaging==26.0
+packaging==25.0
     # via
     #   pyproject-api
     #   tox
