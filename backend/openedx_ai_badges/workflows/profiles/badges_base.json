@@ -1,6 +1,10 @@
 {
   "orchestrator_class": "openedx_ai_badges.workflows.orchestrators.BadgeOrchestrator",
   "processor_config": {
+      "OpenEdXProcessor": {
+        "function": "get_course_info",
+        "fields": ["title", "short_description", "description", "overview"],
+      },
       "BadgeProcessor": {
           "function": "generate_badgeclass",
           "provider": "openai",
