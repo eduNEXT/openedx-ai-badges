@@ -33,6 +33,7 @@ class BadgeProcessor(LLMProcessor):
             6. The badge definition should be deterministic: similar courses should
               produce similar badge definitions.
             7. Assume the issuer already exists and will be linked separately.
+            8. Return ONLY the JSON as plain text, without code blocks or markdown formatting.
 
             Return the result strictly as JSON with the following structure:
 
