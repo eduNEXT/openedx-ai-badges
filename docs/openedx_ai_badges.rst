@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   openedx_ai_badges.processors
    openedx_ai_badges.settings
    openedx_ai_badges.workflows
 
