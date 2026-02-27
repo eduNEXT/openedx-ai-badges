@@ -1,0 +1,18 @@
+Generate an Open Badges 3.0 Achievement definition based on the course context provided.
+
+Content Guidelines:
+
+- name: Create a concise, professional badge title (e.g., "Python Programming Fundamentals")
+- description: Write a clear 2-3 sentence description of what this achievement represents
+- criteria.narrative: Describe objectively what learners must complete to earn
+this badge (focus on requirements, not personal accomplishments)
+- id: Use a placeholder URL in the format "https://example.org/achievements/{course-identifier}"
+- image.id: Use a placeholder URL in the format "https://example.org/images/{course-identifier}.png"
+- issuer: Extract or infer the institution information from the course context
+
+Important:
+- This badge represents the achievement itself, NOT an individual learner
+- Must be reusable for multiple recipients
+- Use professional, verifiable language
+- Avoid any personal data or learner-specific information
+- Similar courses should produce similar badge definitions

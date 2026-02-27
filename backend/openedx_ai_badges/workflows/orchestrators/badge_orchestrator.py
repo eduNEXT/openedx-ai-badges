@@ -13,15 +13,6 @@ from ..processors.badge_processor import BadgeProcessor
 logger = logging.getLogger(__name__)
 
 
-MOCKED_BADGE_STRUCTURE = {
-  "@context": "https://w3id.org/openbadges/v2",
-  "id": "https://tu-dominio.com/badges/backend-master.json",
-  "type": "BadgeClass",
-  "image": "https://your-domain/static/badges/backend-master.png",
-  "issuer": "https://your-domain/issuer.json",
-}
-
-
 class BadgeOrchestrator(SessionBasedOrchestrator):
     """
     Complete mock orchestrator.
