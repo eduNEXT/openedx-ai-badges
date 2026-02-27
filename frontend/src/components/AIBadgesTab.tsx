@@ -14,9 +14,12 @@ import {
   StatefulButton,
   SelectableBox,
   Button,
+  Spinner,
 } from '@openedx/paragon';
 import { BadgeFormData } from '../types';
 import messages from '../messages';
+import { generateBadge } from '../services/badgeWorkflowService';
+import { useParams } from 'react-router-dom';
 
 const mockUnits = [
   { id: 'unit-1', name: 'Unit 1: Introduction' },
@@ -59,6 +62,14 @@ const formOptions = {
 
 const AIBadgesTab = () => {
   const intl = useIntl();
+  const { courseId: paramCourseId } = useParams<{ courseId: string }>();
+
+  // Fallback to extract courseId from URL if useParams fails
+  const courseId = (() => {
+    if (paramCourseId) { return paramCourseId; }
+    const pathMatch = window.location.pathname.match(/course\/([^/]+)/);
+    return pathMatch ? pathMatch[1] : null;
+  })();
 
   const [formData, setFormData] = useState<BadgeFormData>({
     scope: 'course',
@@ -75,10 +86,48 @@ const AIBadgesTab = () => {
   const [jsonInput1, setJsonInput1] = useState('');
   const [jsonInput2, setJsonInput2] = useState('');
 
+  // Badge generation states
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generationError, setGenerationError] = useState<string | null>(null);
+  const [generatedBadge, setGeneratedBadge] = useState<any>(null);
+
   const handleChange = (field: keyof BadgeFormData, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: false }));
+    }
+  };
+
+  const handleGenerateBadge = async () => {
+    if (formData.scope === 'unit' && !formData.unitId) {
+      setErrors({ unitId: true });
+      return;
+    }
+
+    setIsGenerating(true);
+    setGenerationError(null);
+
+    try {
+      const result = await generateBadge({
+        formData,
+        courseId: courseId || '',
+      });
+
+      let badge = result.response;
+      if (typeof badge === 'string') {
+        try {
+          // Replace single quotes just in case the backend returns a python dict string format
+          badge = JSON.parse(badge.replace(/'/g, '"'));
+        } catch (e) {
+          // If parsing fails, store as string
+        }
+      }
+
+      setGeneratedBadge(badge);
+    } catch (error: any) {
+      setGenerationError(error.message);
+    } finally {
+      setIsGenerating(false);
     }
   };
 
@@ -267,10 +316,18 @@ const AIBadgesTab = () => {
                 />
               </Form.Group>
 
+              {generationError && (
+                <div className="mt-3 text-danger small">
+                  {intl.formatMessage(messages['openedx-ai-badges.badge-form.error.generation'])}: {generationError}
+                </div>
+              )}
+
               {/* Submit Button */}
               <div className="d-flex gap-2 justify-content-end mt-4">
                 <StatefulButton
-                  disabled
+                  state={isGenerating ? 'pending' : 'default'}
+                  onClick={handleGenerateBadge}
+                  disabled={isGenerating}
                   labels={{
                     default: intl.formatMessage(messages['openedx-ai-badges.badge-form.button.generate']),
                     pending: intl.formatMessage(messages['openedx-ai-badges.badge-form.generating.message']),
@@ -284,12 +341,30 @@ const AIBadgesTab = () => {
 
         {/* Right section: Preview */}
         <Col lg={6} className="d-flex flex-column border-start align-items-center justify-content-center">
-          <div className="text-center py-5 text-muted m-auto">
-            <span className="display-1">🎖️</span>
-            <p className="small text-center">
-              {intl.formatMessage(messages['openedx-ai-badges.badge-preview.placeholder'])}
-            </p>
-          </div>
+          {isGenerating ? (
+            <div className="text-center py-5">
+              <Spinner animation="border" variant="primary" />
+              <p className="mt-3 text-muted">
+                {intl.formatMessage(messages['openedx-ai-badges.badge-form.generating.message'])}
+              </p>
+            </div>
+          ) : generatedBadge ? (
+            <div className="w-100 p-4">
+              <h5 className="mb-3">{intl.formatMessage(messages['openedx-ai-badges.badge-form.title'])}</h5>
+              <div className="bg-light p-3 rounded border overflow-auto" style={{ maxHeight: '600px' }}>
+                <pre className="x-small text-dark mb-0" style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
+                  {JSON.stringify(generatedBadge, null, 2)}
+                </pre>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center py-5 text-muted m-auto">
+              <span className="display-1">🎖️</span>
+              <p className="small text-center">
+                {intl.formatMessage(messages['openedx-ai-badges.badge-preview.placeholder'])}
+              </p>
+            </div>
+          )}
         </Col>
       </Row>
 

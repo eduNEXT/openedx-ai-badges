@@ -216,6 +216,11 @@ const messages = defineMessages({
     defaultMessage: 'This field is required',
     description: 'Error for required field',
   },
+  'openedx-ai-badges.badge-form.error.generation': {
+    id: 'openedx-ai-badges.badge-form.error.generation',
+    defaultMessage: 'Error generating badge',
+    description: 'Header for the generation error message',
+  },
 
   // Badge preview placeholder
   'openedx-ai-badges.badge-preview.placeholder': {
