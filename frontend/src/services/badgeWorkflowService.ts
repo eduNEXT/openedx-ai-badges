@@ -7,7 +7,7 @@ import { getConfig } from '@edx/frontend-platform';
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 import { BadgeFormData } from '../types';
 
-const getWorkflowApiUrl = () => `${getConfig().LMS_BASE_URL}/openedx-ai-extensions/v1/workflows/`;
+const getWorkflowApiUrl = () => `${getConfig().STUDIO_BASE_URL}/openedx-ai-extensions/v1/workflows/`;
 
 export interface BadgeGenerationParams {
     formData: BadgeFormData;
