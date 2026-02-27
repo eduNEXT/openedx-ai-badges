@@ -17,7 +17,7 @@ class BadgeProcessor(LLMProcessor):
 
     def __init__(self, config=None, user_session=None):
         super().__init__(config, user_session)
-        
+
         # Load response schema
         schema_path = os.path.join(
             os.path.dirname(__file__),
@@ -40,7 +40,8 @@ class BadgeProcessor(LLMProcessor):
 
             - name: Create a concise, professional badge title (e.g., "Python Programming Fundamentals")
             - description: Write a clear 2-3 sentence description of what this achievement represents
-            - criteria.narrative: Describe objectively what learners must complete to earn this badge (focus on requirements, not personal accomplishments)
+            - criteria.narrative: Describe objectively what learners must complete to earn
+            this badge (focus on requirements, not personal accomplishments)
             - id: Use a placeholder URL in the format "https://example.org/achievements/{course-identifier}"
             - image.id: Use a placeholder URL in the format "https://example.org/images/{course-identifier}.png"
             - issuer: Extract or infer the institution information from the course context
