@@ -3,7 +3,6 @@ Badge processor module for generating Open Badges 3.0 BadgeClass definitions.
 """
 import json
 import logging
-import os
 from pathlib import Path
 
 from openedx_ai_extensions.processors import LLMProcessor  # pylint: disable=import-error
@@ -23,9 +22,10 @@ class BadgeProcessor(LLMProcessor):
         super().__init__(config, user_session)
 
         # Load response schema
-        schema_path = os.path.join(
-            os.path.dirname(__file__),
-            '../response_schemas/openbadge-3.0-achievement.json'
+        schema_path = (
+            Path(__file__).resolve().parent
+            / "response_schemas"
+            / "openbadge-3.0-achievement.json"
         )
         with open(schema_path, 'r', encoding='utf-8') as f:
             self.extra_params['response_format'] = json.load(f)
@@ -38,7 +38,7 @@ class BadgeProcessor(LLMProcessor):
             dict: LLM response containing the generated BadgeClass JSON
         """
         prompt_file_path = (
-            Path(__file__).resolve().parent.parent.parent
+            Path(__file__).resolve().parent.parent
             / "prompts"
             / "generate_openbadge_30.txt"
         )

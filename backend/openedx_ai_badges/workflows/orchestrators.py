@@ -8,7 +8,7 @@ import logging
 from openedx_ai_extensions.processors import OpenEdXProcessor
 from openedx_ai_extensions.workflows.orchestrators.session_based_orchestrator import SessionBasedOrchestrator
 
-from openedx_ai_badges.workflows.processors.badge_processor import BadgeProcessor
+from openedx_ai_badges.processors.badge_processor import BadgeProcessor
 
 logger = logging.getLogger(__name__)
 
