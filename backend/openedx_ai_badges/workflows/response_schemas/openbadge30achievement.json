@@ -1,0 +1,103 @@
+{
+    "type": "json_schema",
+    "json_schema": {
+        "name": "OpenBadge30Achievement",
+        "strict": true,
+        "schema": {
+            "type": "object",
+            "properties": {
+                "@context": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Must be ['https://purl.imsglobal.org/spec/ob/v3p0/context.json']"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Must include 'Achievement'"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "criteria": {
+                    "type": "object",
+                    "properties": {
+                        "narrative": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "narrative"
+                    ],
+                    "additionalProperties": false
+                },
+                "image": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "type": "string",
+                            "const": "Image"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "type"
+                    ],
+                    "additionalProperties": false
+                },
+                "issuer": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "The Issuer's DID or URL"
+                        },
+                        "type": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "url": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "type",
+                        "name",
+                        "url"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "@context",
+                "id",
+                "type",
+                "name",
+                "description",
+                "criteria",
+                "image",
+                "issuer"
+            ],
+            "additionalProperties": false
+        }
+    }
+}
