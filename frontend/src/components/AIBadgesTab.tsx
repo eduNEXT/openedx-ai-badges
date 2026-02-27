@@ -16,17 +16,13 @@ import {
   Button,
   Spinner,
 } from '@openedx/paragon';
+import { services } from '@openedx/openedx-ai-extensions-ui';
 import { BadgeFormData } from '../types';
 import messages from '../messages';
-import { generateBadge } from '../services/badgeWorkflowService';
 
 const AIBadgesTab = () => {
   const intl = useIntl();
-  // Extract courseId from URL
-  const courseId = (() => {
-    const pathMatch = window.location.pathname.match(/course\/([^/]+)/);
-    return pathMatch ? pathMatch[1] : null;
-  })();
+  const contextData = services.prepareContextData({});
 
   const [formData] = useState<BadgeFormData>({
     scope: 'course',
@@ -49,9 +45,12 @@ const AIBadgesTab = () => {
     setGenerationError(null);
 
     try {
-      const result = await generateBadge({
-        formData,
-        courseId: courseId || '',
+      const result = await services.callWorkflowService({
+        payload: {
+          action: 'run',
+          userInput: formData,
+        },
+        context: contextData,
       });
 
       let badge = result.response;
