@@ -19,20 +19,11 @@ import {
 import { BadgeFormData } from '../types';
 import messages from '../messages';
 import { generateBadge } from '../services/badgeWorkflowService';
-import { useParams } from 'react-router-dom';
 
-const mockUnits = [
-  { id: 'unit-1', name: 'Unit 1: Introduction' },
-  { id: 'unit-2', name: 'Unit 2: Fundamentals' },
-  { id: 'unit-3', name: 'Unit 3: Advanced Topics' },
-  { id: 'unit-4', name: 'Unit 4: Capstone Project' },
-];
-
+// Mock data for other types if needed in the future
 const formOptions = {
   scope: [
     { value: 'course', label: 'openedx-ai-badges.badge-form.scope.course' },
-    { value: 'section', label: 'openedx-ai-badges.badge-form.scope.section' },
-    { value: 'unit', label: 'openedx-ai-badges.badge-form.scope.unit' },
   ],
   style: [
     { value: 'modern', label: 'openedx-ai-badges.badge-form.style.modern' },
@@ -62,11 +53,8 @@ const formOptions = {
 
 const AIBadgesTab = () => {
   const intl = useIntl();
-  const { courseId: paramCourseId } = useParams<{ courseId: string }>();
-
-  // Fallback to extract courseId from URL if useParams fails
+  // Extract courseId from URL
   const courseId = (() => {
-    if (paramCourseId) { return paramCourseId; }
     const pathMatch = window.location.pathname.match(/course\/([^/]+)/);
     return pathMatch ? pathMatch[1] : null;
   })();
@@ -82,9 +70,6 @@ const AIBadgesTab = () => {
     description: '',
   });
   const [errors, setErrors] = useState<Record<string, boolean>>({});
-
-  const [jsonInput1, setJsonInput1] = useState('');
-  const [jsonInput2, setJsonInput2] = useState('');
 
   // Badge generation states
   const [isGenerating, setIsGenerating] = useState(false);
@@ -138,58 +123,7 @@ const AIBadgesTab = () => {
         <Col lg={6} className="d-flex flex-column">
           <div className="flex-grow-1 overflow-auto">
             <Form className="badge-form p-3">
-              {/* Scope Selection */}
-              <Form.Group className="mb-4">
-                <Form.Label className="font-weight-bold mb-3">
-                  {intl.formatMessage(messages['openedx-ai-badges.badge-form.scope.label'])}
-                </Form.Label>
-                <Form.Text className="d-block mb-3 text-muted">
-                  {intl.formatMessage(messages['openedx-ai-badges.badge-form.scope.description'])}
-                </Form.Text>
-                <SelectableBox.Set
-                  value={formData.scope}
-                  onChange={(e) => handleChange('scope', e.target.value)}
-                  name="scope"
-                  ariaLabel="scope selection"
-                  columns={4}
-                >
-                  {formOptions.scope.map(option => (
-                    <SelectableBox
-                      key={option.value}
-                      value={option.value}
-                      aria-label={intl.formatMessage(messages[option.label])}
-                    >
-                      {intl.formatMessage(messages[option.label])}
-                    </SelectableBox>
-                  ))}
-                </SelectableBox.Set>
-              </Form.Group>
-
-              {/* Unit Selection - shown only when scope is 'unit' */}
-              {formData.scope === 'unit' && (
-                <Form.Group controlId="unit-select" className="mb-4" isInvalid={errors.unitId}>
-                  <Form.Label>{intl.formatMessage(messages['openedx-ai-badges.badge-form.unit.label'])}</Form.Label>
-                  <Form.Control
-                    as="select"
-                    value={formData.unitId}
-                    onChange={(e) => handleChange('unitId', e.target.value)}
-                  >
-                    <option value="">
-                      {intl.formatMessage(messages['openedx-ai-badges.badge-form.unit.placeholder'])}
-                    </option>
-                    {mockUnits.map((unit) => (
-                      <option key={unit.id} value={unit.id}>
-                        {unit.name}
-                      </option>
-                    ))}
-                  </Form.Control>
-                  {errors.unitId && (
-                    <Form.Control.Feedback type="invalid">
-                      {intl.formatMessage(messages['openedx-ai-badges.badge-form.error.required-field'])}
-                    </Form.Control.Feedback>
-                  )}
-                </Form.Group>
-              )}
+              {/* Scope fixed to Course - UI removed to simplify */}
 
               {/* Style Selection */}
               <Form.Group className="mb-4">
@@ -365,60 +299,6 @@ const AIBadgesTab = () => {
               </p>
             </div>
           )}
-        </Col>
-      </Row>
-
-      <Row className="g-4 mt-2">
-        <Col lg={6}>
-          <Card>
-            <Card.Header
-              title={intl.formatMessage(messages['openedx-ai-badges.hitl.card1.title'])}
-              size="sm"
-            />
-            <Card.Body>
-              <Card.Section>
-                <Form.Control
-                  as="textarea"
-                  rows={10}
-                  value={jsonInput1}
-                  onChange={(e) => setJsonInput1(e.target.value)}
-                  placeholder={intl.formatMessage(messages['openedx-ai-badges.hitl.json-placeholder'])}
-                  style={{ fontFamily: 'monospace' }}
-                />
-              </Card.Section>
-            </Card.Body>
-            <Card.Footer>
-              <Button variant="primary">
-                {intl.formatMessage(messages['openedx-ai-badges.hitl.card1.button'])}
-              </Button>
-            </Card.Footer>
-          </Card>
-        </Col>
-
-        <Col lg={6}>
-          <Card>
-            <Card.Header
-              title={intl.formatMessage(messages['openedx-ai-badges.hitl.card2.title'])}
-              size="sm"
-            />
-            <Card.Body>
-              <Card.Section>
-                <Form.Control
-                  as="textarea"
-                  rows={10}
-                  value={jsonInput2}
-                  onChange={(e) => setJsonInput2(e.target.value)}
-                  placeholder={intl.formatMessage(messages['openedx-ai-badges.hitl.json-placeholder'])}
-                  style={{ fontFamily: 'monospace' }}
-                />
-              </Card.Section>
-            </Card.Body>
-            <Card.Footer>
-              <Button variant="primary">
-                {intl.formatMessage(messages['openedx-ai-badges.hitl.card2.button'])}
-              </Button>
-            </Card.Footer>
-          </Card>
         </Col>
       </Row>
     </Container>

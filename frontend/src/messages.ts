@@ -43,8 +43,8 @@ const messages = defineMessages({
   // Legacy badge form messages
   'openedx-ai-badges.badge-form.title': {
     id: 'openedx-ai-badges.badge-form.title',
-    defaultMessage: 'Create Your Badge',
-    description: 'Title for the badge form step',
+    defaultMessage: 'Your Badge',
+    description: 'Title for the badge preview section',
   },
   'openedx-ai-badges.badge-form.scope.label': {
     id: 'openedx-ai-badges.badge-form.scope.label',
