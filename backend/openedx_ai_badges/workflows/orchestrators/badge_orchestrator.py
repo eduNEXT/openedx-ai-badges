@@ -58,27 +58,12 @@ class BadgeOrchestrator(SessionBasedOrchestrator):
 
         badge_processor = BadgeProcessor(self.profile.processor_config)
         llm_result = badge_processor.process(context=str(course_context))
-        response = json.loads(llm_result.get("response", "{}"))
-
-        badge = {
-            "type": "BadgeClass",
-            "id": "https://yourplatform.com/badges/ai-generated-id-123",
-            "name": response['name'],
-            "description": response['description'],
-            "image": f"https://api.dicebear.com/7.x/identicon/svg?seed={response['name']}",
-            "criteria": {"narrative": response['criteria']},
-            "issuer": {
-                "id": "https://yourplatform.com/issuer.json",
-                "type": "Issuer",
-                "name": "My Extensible Platform",
-                "url": "https://yourplatform.com"
-            }
-        }
+        badge = json.loads(llm_result.get("response", "{}"))
 
         self.session.metadata['badge'] = badge
         self.session.save(update_fields=['metadata'])
 
         return {
-            "response": str(badge),
+            "response": badge,
             "status": "completed",
         }
