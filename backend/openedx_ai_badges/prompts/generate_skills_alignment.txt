@@ -1,0 +1,18 @@
+Extract relevant skills from the course context and align them with recognized skill frameworks.
+
+Content Guidelines:
+
+- targetType: Use "ESCO:Skill" for European skills framework or "CF:Skill" for competency frameworks
+- targetName: Provide a clear, concise skill name (e.g., "Computer Programming", "Data Analysis")
+- targetDescription: Write a detailed 1-2 sentence description of what the skill entails and how it applies
+- targetUrl: Use the actual URL from a recognized skill database (preferably ESCO in the format http://data.europa.eu/esco/skill/{uuid}, e.g., http://data.europa.eu/esco/skill/d5145a9a-602e-40bf-b3e1-f04cf9c3ef86, or another authoritative source such as O*NET) that corresponds to the skill, not a placeholder.
+
+Important:
+- Focus on specific, actionable skills rather than broad topics
+- Identify 3-7 key skills that directly relate to the course content
+- Skills should be recognizable and transferable across contexts
+- Use professional, industry-standard terminology
+
+Contextual Guidelines:
+- Level: {{LEVEL}}
+- Criterion: {{CRITERION}}

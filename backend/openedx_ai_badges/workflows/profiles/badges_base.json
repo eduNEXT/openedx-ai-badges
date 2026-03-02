@@ -8,6 +8,10 @@
       "BadgeProcessor": {
           "function": "generate_badgeclass",
           "provider": "openai",
+      },
+      "SkillsProcessor": {
+          "function": "generate_skills",
+          "provider": "openai",
       }
   },
   "actuator_config": {

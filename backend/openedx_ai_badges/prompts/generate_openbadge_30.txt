@@ -16,3 +16,9 @@ Important:
 - Use professional, verifiable language
 - Avoid any personal data or learner-specific information
 - Similar courses should produce similar badge definitions
+
+Design and Tone Guidelines:
+- Style: {{STYLE}}
+- Tone: {{TONE}}
+- Level: {{LEVEL}}
+- Criterion: {{CRITERION}}

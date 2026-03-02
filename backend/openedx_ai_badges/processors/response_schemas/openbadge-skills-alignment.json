@@ -1,0 +1,54 @@
+{
+  "type": "json_schema",
+  "json_schema": {
+    "name": "OpenBadgeSkillsAlignment",
+    "strict": true,
+    "schema": {
+      "type": "object",
+      "properties": {
+        "alignment": {
+          "type": "array",
+          "description": "A list of skills or standards aligned with this achievement.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "Alignment",
+                "description": "Must always be 'Alignment' for OBv3."
+              },
+              "targetType": {
+                "type": "string",
+                "description": "The type of the target, e.g., 'ESCO:Skill' or 'CF:Skill'."
+              },
+              "targetName": {
+                "type": "string",
+                "description": "The name of the specific skill (e.g., 'Computer Programming')."
+              },
+              "targetDescription": {
+                "type": "string",
+                "description": "A detailed description of what the skill entails."
+              },
+              "targetUrl": {
+                "type": "string",
+                "description": "The URL pointing to the official skill definition (e.g., ESCO portal)."
+              }
+            },
+            "required": [
+              "type",
+              "targetType",
+              "targetName",
+              "targetDescription",
+              "targetUrl"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "alignment"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
