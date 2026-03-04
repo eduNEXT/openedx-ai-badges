@@ -105,7 +105,7 @@ class BadgeOrchestrator(SessionBasedOrchestrator):
         skill_processor = SkillsProcessor(self.profile.processor_config)
         llm_result = skill_processor.process(
             context=json.dumps(course_context),
-            input_data=input_data
+            input_data=json.dumps(input_data)
         )
         if 'error' in llm_result:
             return {
@@ -126,7 +126,7 @@ class BadgeOrchestrator(SessionBasedOrchestrator):
         badge_processor = BadgeProcessor(self.profile.processor_config)
         llm_result = badge_processor.process(
             context=json.dumps(complete_info),
-            input_data=input_data
+            input_data=json.dumps(input_data)
         )
 
         if 'error' in llm_result:

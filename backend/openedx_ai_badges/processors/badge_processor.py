@@ -35,8 +35,13 @@ class BaseBadgeLLMProcessor(LLMProcessor):
     def fill_prompt(self, prompt: str) -> str:
         """Fill prompt placeholders with input data."""
         if self.input_data:
+            try:
+                input_data = json.loads(self.input_data)
+            except json.JSONDecodeError as e:
+                logger.exception(f"Input data is not valid JSON: {e}")
+                raise ValueError(f"Input data must be a valid JSON string: {e}") from e
             # Replace all placeholders in the prompt with input_data values (case-insensitive)
-            for key, value in self.input_data.items():
+            for key, value in input_data.items():
                 placeholder = f"{{{{{key.upper()}}}}}"
                 prompt = prompt.replace(placeholder, str(value))
         return prompt
