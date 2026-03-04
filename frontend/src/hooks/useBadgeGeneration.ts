@@ -24,7 +24,7 @@ interface UseBadgeGenerationReturn {
  * error handling that were previously inlined 4× in AIBadgesTab.
  */
 export const useBadgeGeneration = (
-  uiSlotSelectorId: string | null,
+  uiSlotSelectorId: string | null = 'authoring-resources-ai-badge-creator-modal',
   courseId: string | null,
   locationId: string | null,
 ): UseBadgeGenerationReturn => {
