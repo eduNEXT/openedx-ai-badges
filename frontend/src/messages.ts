@@ -232,6 +232,16 @@ const messages = defineMessages({
     defaultMessage: 'Something went wrong. Please try again later.',
     description: 'Generic error message',
   },
+  'openedx-ai-badges.badge-form.button.show-form': {
+    id: 'openedx-ai-badges.badge-form.button.show-form',
+    defaultMessage: 'Create a new badge',
+    description: 'Button to show the generation form again',
+  },
+  'openedx-ai-badges.badge-preview.edition-instructions': {
+    id: 'openedx-ai-badges.badge-preview.edition-instructions',
+    defaultMessage: '<bold>Your badge has been generated successfully!</bold> <br></br> You can now review and edit each section independently using the edit icons. Once you are satisfied, the badge will be saved to the course.',
+    description: 'Instructions shown after badge generation',
+  },
 });
 
 export default messages;
