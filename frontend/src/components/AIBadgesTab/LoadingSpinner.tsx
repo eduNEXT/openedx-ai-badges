@@ -18,7 +18,7 @@ const LoadingSpinner = ({
 
   return (
     <div className="text-center py-5">
-      <Spinner animation="border" variant="primary" />
+      <Spinner animation="border" variant="primary" role="status" screenReaderText={displayMessage} />
       <p className="mt-3 text-muted">
         {displayMessage}
       </p>

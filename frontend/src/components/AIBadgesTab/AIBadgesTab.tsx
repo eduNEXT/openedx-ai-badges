@@ -40,9 +40,9 @@ const AIBadgesTab = ({ uiSlotSelectorId, courseId, locationId }: AIBadgesTabProp
 
   return (
     <Container fluid className="ai-badges-tab">
-      <Row className="h-100 g-4">
+      <Row className="h-1000" gap={2}>
         {/* Left section: Badge Options Form */}
-        <Col lg={5} className="d-flex flex-column">
+        <Col lg={5} md={12} className="d-flex flex-column">
           <BadgeOptionsForm
             formData={formData}
             onChange={handleFieldChange}
@@ -55,6 +55,7 @@ const AIBadgesTab = ({ uiSlotSelectorId, courseId, locationId }: AIBadgesTabProp
         {/* Right section: Preview */}
         <Col
           lg={7}
+          md={12}
           className="d-flex flex-column border-start align-items-center justify-content-center"
         >
           <BadgePreview

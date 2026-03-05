@@ -1,5 +1,9 @@
-import { Form, SelectableBox } from '@openedx/paragon';
+import { useIntl } from '@edx/frontend-platform/i18n';
+import {
+  breakpoints, Form, SelectableBox, useMediaQuery,
+} from '@openedx/paragon';
 import { FormOption } from '../../types/badges';
+import messages from '../../messages';
 
 interface SelectableBoxGroupProps {
   /** The visible label above the selectable boxes. */
@@ -25,29 +29,35 @@ const SelectableBoxGroup = ({
   name,
   value,
   options,
-  columns = 4,
+  columns,
   onChange,
-}: SelectableBoxGroupProps) => (
-  <Form.Group className="mb-4">
-    <Form.Label className="font-weight-bold mb-3">{label}</Form.Label>
-    <SelectableBox.Set
-      value={value}
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
-      name={name}
-      ariaLabel={`${name} selection`}
-      columns={columns}
-    >
-      {options.map((option) => (
-        <SelectableBox
-          key={option.value}
-          value={option.value}
-          aria-label={option.label}
-        >
-          {option.label}
-        </SelectableBox>
-      ))}
-    </SelectableBox.Set>
-  </Form.Group>
-);
+}: SelectableBoxGroupProps) => {
+  const intl = useIntl();
+  const isDesktop = useMediaQuery({ minWidth: breakpoints.large.minWidth });
+  const defaultCols = isDesktop ? 4 : 2;
+  return (
+    <Form.Group className="mb-4 ">
+      <Form.Label className="font-weight-bold mb-3">{label}</Form.Label>
+      <SelectableBox.Set
+        value={value}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
+        name={name}
+        ariaLabel={intl.formatMessage(messages['openedx-ai-badges.badge-form.selectable.aria-label'], { name })}
+        columns={columns || defaultCols}
+      >
+        {options.map((option) => (
+          <SelectableBox
+            className="p-2"
+            key={option.value}
+            value={option.value}
+            aria-label={option.label}
+          >
+            {option.label}
+          </SelectableBox>
+        ))}
+      </SelectableBox.Set>
+    </Form.Group>
+  );
+};
 
 export default SelectableBoxGroup;

@@ -1,43 +1,11 @@
 import { defineMessages } from '@edx/frontend-platform/i18n';
 
 const messages = defineMessages({
-  // Tab labels
-  'openedx-ai-badges.tab.legacy-badges': {
-    id: 'openedx-ai-badges.tab.legacy-badges',
-    defaultMessage: 'Legacy Badges',
-    description: 'Inner tab label for legacy badge creation',
-  },
-  'openedx-ai-badges.tab.hitl-badges': {
-    id: 'openedx-ai-badges.tab.hitl-badges',
-    defaultMessage: 'HITL Badges',
-    description: 'Inner tab label for human-in-the-loop badge creation',
-  },
-
-  // HITL Badges tab
-  'openedx-ai-badges.hitl.card1.title': {
-    id: 'openedx-ai-badges.hitl.card1.title',
-    defaultMessage: 'Badge Class Configuration',
-    description: 'Title of the first HITL badge card',
-  },
-  'openedx-ai-badges.hitl.card1.button': {
-    id: 'openedx-ai-badges.hitl.card1.button',
-    defaultMessage: 'Create Badge Class',
-    description: 'Button label for creating badge class',
-  },
-  'openedx-ai-badges.hitl.card2.title': {
-    id: 'openedx-ai-badges.hitl.card2.title',
-    defaultMessage: 'Badge Assertion Configuration',
-    description: 'Title of the second HITL badge card',
-  },
-  'openedx-ai-badges.hitl.card2.button': {
-    id: 'openedx-ai-badges.hitl.card2.button',
-    defaultMessage: 'Create Badge Assertion',
-    description: 'Button label for creating badge assertion',
-  },
-  'openedx-ai-badges.hitl.json-placeholder': {
-    id: 'openedx-ai-badges.hitl.json-placeholder',
-    defaultMessage: 'Paste JSON configuration here...',
-    description: 'Placeholder for JSON textarea',
+  // Badge Form options labels
+  'openedx-ai-badges.badge-form.selectable.aria-label': {
+    id: 'openedx-ai-badges.badge-form.selectable.aria-label',
+    defaultMessage: '{name} selection',
+    description: 'Aria label for a group of selectable options',
   },
 
   'openedx-ai-badges.badge-form.style.label': {
@@ -145,11 +113,6 @@ const messages = defineMessages({
     defaultMessage: 'Extract Skills',
     description: 'Label for skill extraction toggle',
   },
-  'openedx-ai-badges.badge-form.skills.description': {
-    id: 'openedx-ai-badges.badge-form.skills.description',
-    defaultMessage: 'Automatically extract and align skills from the selected {scope}',
-    description: 'Description for skill extraction feature',
-  },
   'openedx-ai-badges.badge-form.description.label': {
     id: 'openedx-ai-badges.badge-form.description.label',
     defaultMessage: 'Additional Description',
@@ -189,15 +152,10 @@ const messages = defineMessages({
     defaultMessage: 'Badge Generator',
     description: 'Header for the badge generator form',
   },
-  'openedx-ai-badges.badge-form.description.p1': {
-    id: 'openedx-ai-badges.badge-form.description.p1',
-    defaultMessage: 'This tab allows you to generate <bold>Open Badges 3.0</bold> following the official standard. The system automatically extracts real information from your course, including the title, description, and overview by default.',
+  'openedx-ai-badges.badge-form.description': {
+    id: 'openedx-ai-badges.badge-form.description',
+    defaultMessage: 'This tab allows you to generate <bold>Open Badges 3.0</bold> following the official standard. The system automatically extracts real information from your course, including the title, description, and overview by default. <br></br> The extraction process and the final output are highly configurable via the <bold>AI Workflow Profile</bold>.',
     description: 'First paragraph of the badge generator description',
-  },
-  'openedx-ai-badges.badge-form.description.p2': {
-    id: 'openedx-ai-badges.badge-form.description.p2',
-    defaultMessage: 'The extraction process and the final output are highly configurable via the <bold>AI Workflow Profile</bold>.',
-    description: 'Second paragraph of the badge generator description',
   },
   'openedx-ai-badges.badge-form.skills.description.short': {
     id: 'openedx-ai-badges.badge-form.skills.description.short',

@@ -7,6 +7,7 @@ import messages from '../../messages';
 
 /** Renders bold text for internationalized messages. */
 const Bold = (chunks: React.ReactNode) => <strong>{chunks}</strong>;
+const Br = () => <br />;
 
 interface BadgeOptionsFormProps {
   /** Current form data. */
@@ -57,13 +58,9 @@ const BadgeOptionsForm = ({
         {intl.formatMessage(messages['openedx-ai-badges.badge-form.header'])}
       </h2>
       <p>
-        {intl.formatMessage(messages['openedx-ai-badges.badge-form.description.p1'], {
+        {intl.formatMessage(messages['openedx-ai-badges.badge-form.description'], {
           bold: Bold,
-        })}
-      </p>
-      <p>
-        {intl.formatMessage(messages['openedx-ai-badges.badge-form.description.p2'], {
-          bold: Bold,
+          br: Br,
         })}
       </p>
 
@@ -81,13 +78,15 @@ const BadgeOptionsForm = ({
 
         {/* Skills Toggle Switch */}
         <Form.Group className="mb-4">
+
           <Form.Switch
             id="skills-toggle"
-            label={intl.formatMessage(messages['openedx-ai-badges.badge-form.skills.label'])}
             checked={formData.skillsEnabled}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange('skillsEnabled', e.target.checked)}
-          />
-          <Form.Text muted className="d-block mt-2">
+          >
+            {intl.formatMessage(messages['openedx-ai-badges.badge-form.skills.label'])}
+          </Form.Switch>
+          <Form.Text className="d-block mt-2 text-muted">
             {intl.formatMessage(messages['openedx-ai-badges.badge-form.skills.description.short'])}
           </Form.Text>
         </Form.Group>
