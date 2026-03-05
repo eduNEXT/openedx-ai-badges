@@ -80,11 +80,11 @@ The **openedx-ai-badges** plugin extends the base AI framework by providing spec
 
    - Link the scope to your ``badges_base`` profile.
 
-4. **Trigger Generation**:
+4. **Trigger Badge Generation**:
 
-   - Enter the CMS. You will see a new UI element: "Generate a badge for this course".
-
-   - Click the button to trigger the custom **Orchestrator** and **Actuators**.
+-  Log in to the CMS and select the desired course.
+-  Go to Content > **Pages and Resources** > **AI Extensions Settings** > **AI Badges**.
+-  Click the **Generate Badge** button.
 
 Setting Up Development Environment
 ===================================
