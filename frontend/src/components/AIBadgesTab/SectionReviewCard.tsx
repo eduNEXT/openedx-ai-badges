@@ -91,7 +91,7 @@ const SectionReviewCard = ({
   const handleSave = () => {
     try {
       const parsed = JSON.parse(localJson);
-      onSave(parsed);
+      onSave(JSON.stringify(parsed));
     } catch (e) {
       setIsInvalid(true);
     }
