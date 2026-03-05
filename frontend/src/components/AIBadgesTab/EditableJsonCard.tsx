@@ -41,11 +41,14 @@ const EditableJsonCard = ({
   };
 
   return (
-    <Card className="editable-json-card">
+    <Card className="flex-grow-1">
       <Card.Header title={title} />
-      <Card.Section>
+      <Card.Section className="d-flex flex-column h-100">
         <Form.Control
           as="textarea"
+          size="sm"
+          controlClassName="h-100 text-monospace"
+          className="flex-grow-1"
           aria-label={intl.formatMessage(messages['openedx-ai-badges.badge-preview.edit.aria-label'], { section: title })}
           value={JSON.stringify(data, null, 2)}
           onChange={handleTextChange}

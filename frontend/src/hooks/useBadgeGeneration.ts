@@ -24,20 +24,19 @@ interface UseBadgeGenerationReturn {
  * error handling that were previously inlined 4× in AIBadgesTab.
  */
 export const useBadgeGeneration = (
-  uiSlotSelectorId: string | null = 'authoring-resources-ai-badge-creator-modal',
   courseId: string | null,
-  locationId: string | null,
+  uiSlotSelectorId: string | null = 'authoring-resources-ai-badge-creator-modal',
+  locationId?: string | null,
 ): UseBadgeGenerationReturn => {
   const contextData = services.prepareContextData({ uiSlotSelectorId, courseId, locationId });
 
   const [isGenerating, setIsGenerating] = useState(false);
-  const [generationError, setGenerationError] = useState<string | null>(null);
+  const [generationError, setGenerationError] = useState<any>(null);
   const [generatedBadge, setGeneratedBadge] = useState<GeneratedBadge | null>(null);
 
   /**
-     * Internal helper — calls the workflow service and updates state.
-     * Shared by both "generate" and "save" operations.
-     */
+   * Internal helper — calls the workflow service and updates state.
+   */
   const callWorkflow = useCallback(
     async (action: string, userInput: unknown) => {
       setIsGenerating(true);
@@ -49,6 +48,7 @@ export const useBadgeGeneration = (
           context: contextData,
         });
 
+        // Convert backend snake_case to frontend camelCase
         setGeneratedBadge(result.response as GeneratedBadge);
       } catch (error: unknown) {
         setGenerationError(error);
@@ -67,7 +67,11 @@ export const useBadgeGeneration = (
 
   /** Save an individual section back to the backend. */
   const handleSave = useCallback(
-    (key: BadgeSectionKey, value: unknown) => callWorkflow('save', { key, value }),
+    (key: BadgeSectionKey, value: unknown) => {
+      // Backend expects snake_case keys
+      const backendKey = key.replace(/([A-Z])/g, '_$1').toLowerCase();
+      return callWorkflow('save', { key: backendKey, value });
+    },
     [callWorkflow],
   );
 

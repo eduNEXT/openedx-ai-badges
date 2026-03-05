@@ -1,4 +1,6 @@
+import { snakeCaseObject } from '@edx/frontend-platform';
 import { useIntl } from '@edx/frontend-platform/i18n';
+import { Stack } from '@openedx/paragon';
 import { GeneratedBadge, BadgeSectionKey } from '../../types/badges';
 import EditableJsonCard from './EditableJsonCard';
 import LoadingSpinner from './LoadingSpinner';
@@ -43,18 +45,18 @@ const BadgePreview = ({
   }
 
   return (
-    <div className="w-100 p-4 d-flex flex-column gap-4 align-items-center">
+    <Stack gap={4}>
       {BADGE_SECTIONS.map(({ key, title }) => (generatedBadge[key] ? (
         <EditableJsonCard
           key={key}
           title={intl.formatMessage(title)}
-          data={generatedBadge[key]}
+          data={snakeCaseObject(generatedBadge[key])}
           onDataChange={(updated) => onUpdateSection(key, updated)}
           onSave={() => onSave(key, generatedBadge[key])}
           isSaving={isGenerating}
         />
       ) : null))}
-    </div>
+    </Stack>
   );
 };
 
