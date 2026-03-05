@@ -187,6 +187,46 @@ const messages = defineMessages({
     defaultMessage: 'Edit {section} JSON',
     description: 'Aria label for the JSON editor textarea',
   },
+  'openedx-ai-badges.badge-preview.edit.button': {
+    id: 'openedx-ai-badges.badge-preview.edit.button',
+    defaultMessage: 'Edit',
+    description: 'Label for the edit button',
+  },
+  'openedx-ai-badges.badge-preview.edit.button.aria': {
+    id: 'openedx-ai-badges.badge-preview.edit.button.aria',
+    defaultMessage: 'Edit {section} section',
+    description: 'Aria label for the edit button',
+  },
+  'openedx-ai-badges.badge-preview.cancel.button': {
+    id: 'openedx-ai-badges.badge-preview.cancel.button',
+    defaultMessage: 'Cancel',
+    description: 'Label for the cancel button',
+  },
+  'openedx-ai-badges.badge-preview.skills.target-name': {
+    id: 'openedx-ai-badges.badge-preview.skills.target-name',
+    defaultMessage: 'Skill Name',
+    description: 'Label for skill name',
+  },
+  'openedx-ai-badges.badge-preview.skills.target-description': {
+    id: 'openedx-ai-badges.badge-preview.skills.target-description',
+    defaultMessage: 'Description',
+    description: 'Label for skill description',
+  },
+  'openedx-ai-badges.badge-preview.skills.target-type': {
+    id: 'openedx-ai-badges.badge-preview.skills.target-type',
+    defaultMessage: 'Type',
+    description: 'Label for skill type',
+  },
+  'openedx-ai-badges.badge-preview.badge.criteria': {
+    id: 'openedx-ai-badges.badge-preview.badge.criteria',
+    defaultMessage: 'Criteria',
+    description: 'Label for badge criteria narrative',
+  },
+  'openedx-ai-badges.badge-preview.edit.error': {
+    id: 'openedx-ai-badges.badge-preview.edit.error',
+    defaultMessage: 'Invalid JSON',
+    description: 'Error message for invalid JSON',
+  },
   'openedx-ai-badges.error.generic': {
     id: 'openedx-ai-badges.error.generic',
     defaultMessage: 'Something went wrong. Please try again later.',

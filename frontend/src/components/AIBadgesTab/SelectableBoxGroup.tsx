@@ -36,7 +36,7 @@ const SelectableBoxGroup = ({
   const isDesktop = useMediaQuery({ minWidth: breakpoints.large.minWidth });
   const defaultCols = isDesktop ? 4 : 2;
   return (
-    <Form.Group className="mb-4 ">
+    <Form.Group className="mb-4">
       <Form.Label className="font-weight-bold mb-3">{label}</Form.Label>
       <SelectableBox.Set
         value={value}
@@ -45,16 +45,22 @@ const SelectableBoxGroup = ({
         ariaLabel={intl.formatMessage(messages['openedx-ai-badges.badge-form.selectable.aria-label'], { name })}
         columns={columns || defaultCols}
       >
-        {options.map((option) => (
-          <SelectableBox
-            className="p-2"
-            key={option.value}
-            value={option.value}
-            aria-label={option.label}
-          >
-            {option.label}
-          </SelectableBox>
-        ))}
+        {options.map((option) => {
+          const displayLabel = typeof option.label === 'string'
+            ? option.label
+            : intl.formatMessage(option.label);
+
+          return (
+            <SelectableBox
+              className="p-2"
+              key={option.value}
+              value={option.value}
+              aria-label={displayLabel}
+            >
+              <span className="small">{displayLabel}</span>
+            </SelectableBox>
+          );
+        })}
       </SelectableBox.Set>
     </Form.Group>
   );

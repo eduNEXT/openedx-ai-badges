@@ -47,13 +47,8 @@ const BadgeOptionsForm = ({
     criterion: intl.formatMessage(messages['openedx-ai-badges.badge-form.criterion.label']),
   };
 
-  /** Translates the labels of individual selectable options within groups. */
-  const translateOptions = (section: SelectableFieldKey) => FORM_OPTIONS[section].map(option => ({
-    ...option,
-    label: typeof option.label === 'string' ? option.label : intl.formatMessage(option.label),
-  }));
   return (
-    <div className="d-flex flex-column p-4">
+    <div className="d-flex flex-column">
       <h2 className="mb-4 text-primary">
         {intl.formatMessage(messages['openedx-ai-badges.badge-form.header'])}
       </h2>
@@ -71,7 +66,7 @@ const BadgeOptionsForm = ({
             label={fieldLabels[field]}
             name={field}
             value={formData[field]}
-            options={translateOptions(field)}
+            options={FORM_OPTIONS[field]}
             onChange={(value) => onChange(field, value)}
           />
         ))}

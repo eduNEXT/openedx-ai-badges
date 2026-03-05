@@ -1,16 +1,16 @@
-import { snakeCaseObject } from '@edx/frontend-platform';
+import React, { useState } from 'react';
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { Stack } from '@openedx/paragon';
 import { GeneratedBadge, BadgeSectionKey } from '../../types/badges';
-import EditableJsonCard from './EditableJsonCard';
+import SectionReviewCard from './SectionReviewCard';
 import LoadingSpinner from './LoadingSpinner';
 import EmptyPreview from './EmptyPreview';
 import messages from '../../messages';
 
-const BADGE_SECTIONS: { key: BadgeSectionKey; title: string }[] = [
+const BADGE_SECTIONS: { key: BadgeSectionKey; title: { id: string; defaultMessage: string } }[] = [
+  { key: 'badge', title: messages['openedx-ai-badges.badge-preview.badge.title'] },
   { key: 'courseContext', title: messages['openedx-ai-badges.badge-preview.course-context.title'] },
   { key: 'skills', title: messages['openedx-ai-badges.badge-preview.skills.title'] },
-  { key: 'badge', title: messages['openedx-ai-badges.badge-preview.badge.title'] },
 ];
 
 interface BadgePreviewProps {
@@ -20,23 +20,21 @@ interface BadgePreviewProps {
   generatedBadge: GeneratedBadge | null;
   /** Called when the user saves an individual section. */
   onSave: (key: BadgeSectionKey, value: unknown) => Promise<void>;
-  /** Called when the user edits a section locally in the textarea. */
-  onUpdateSection: (key: BadgeSectionKey, value: unknown) => void;
 }
 
 /**
  * Right panel of the AIBadgesTab — shows a loading spinner, empty state,
- * or editable JSON cards for each section of the generated badge.
+ * or formatted cards for each section of the generated badge.
  */
 const BadgePreview = ({
   isGenerating,
   generatedBadge,
   onSave,
-  onUpdateSection,
 }: BadgePreviewProps) => {
   const intl = useIntl();
+  const [editingSection, setEditingSection] = useState<BadgeSectionKey | null>(null);
 
-  if (isGenerating) {
+  if (isGenerating && !generatedBadge) {
     return <LoadingSpinner />;
   }
 
@@ -44,18 +42,38 @@ const BadgePreview = ({
     return <EmptyPreview />;
   }
 
+  const handleEdit = (key: BadgeSectionKey) => setEditingSection(key);
+  const handleCancel = () => setEditingSection(null);
+
+  const handleSave = async (key: BadgeSectionKey, value: unknown) => {
+    // value here is the modified JSON from the child component
+    await onSave(key, value);
+    setEditingSection(null);
+  };
+
   return (
-    <Stack gap={4}>
-      {BADGE_SECTIONS.map(({ key, title }) => (generatedBadge[key] ? (
-        <EditableJsonCard
-          key={key}
-          title={intl.formatMessage(title)}
-          data={snakeCaseObject(generatedBadge[key])}
-          onDataChange={(updated) => onUpdateSection(key, updated)}
-          onSave={() => onSave(key, generatedBadge[key])}
-          isSaving={isGenerating}
-        />
-      ) : null))}
+    <Stack>
+      {BADGE_SECTIONS.map(({ key, title }) => {
+        const data = generatedBadge[key];
+        if (!data) { return null; }
+
+        // Focus Mode: Hide other cards if we are editing one
+        if (editingSection && editingSection !== key) { return null; }
+
+        return (
+          <SectionReviewCard
+            key={key}
+            sectionKey={key}
+            title={intl.formatMessage(title)}
+            data={data}
+            isEditing={editingSection === key}
+            isSaving={isGenerating}
+            onEdit={() => handleEdit(key)}
+            onCancel={handleCancel}
+            onSave={(updated) => handleSave(key, updated)}
+          />
+        );
+      })}
     </Stack>
   );
 };

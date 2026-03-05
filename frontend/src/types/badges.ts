@@ -27,11 +27,43 @@ export interface BadgeFormData {
 /** Keys that can appear in the generated badge response. */
 export type BadgeSectionKey = 'courseContext' | 'skills' | 'badge';
 
+/** Detailed information for each generated section. */
+
+export interface CourseContext {
+  title?: string;
+  description?: string;
+  shortDescription?: string;
+  [key: string]: unknown;
+}
+
+export interface SkillAlignment {
+  type: string;
+  targetType: string;
+  targetName: string;
+  targetDescription: string;
+  targetUrl: string;
+}
+
+export interface SkillsData {
+  alignment: SkillAlignment[];
+}
+
+export interface BadgeCriteria {
+  narrative: string;
+}
+
+export interface BadgeData {
+  name: string;
+  description: string;
+  criteria: BadgeCriteria;
+  [key: string]: unknown;
+}
+
 /** Shape of the AI-generated badge response. */
 export interface GeneratedBadge {
-  courseContext?: Record<string, unknown>;
-  skills?: Record<string, unknown> | Array<unknown>;
-  badge?: Record<string, unknown>;
+  courseContext?: CourseContext;
+  skills?: SkillsData;
+  badge?: BadgeData;
   [key: string]: unknown;
 }
 
