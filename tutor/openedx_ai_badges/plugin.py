@@ -53,6 +53,8 @@ for path in glob(str(importlib_resources.files("openedx_ai_badges") / "patches" 
 
 hooks.Filters.CONFIG_DEFAULTS.add_items(
     [
+        ("LAISER_API_BASE_URL", ""),
+        ("LAISER_API_KEY", ""),
         ("RUN_MIT_SLM", False),
         ("MIT_SLM_DOCKER_IMAGE", "felipemontoya/dcc-mit-badge-api:latest"),
         ("MIT_SLM_OLLAMA_URL", "https://felipemontoya-mit-dcc-ollama.hf.space/api/generate"),

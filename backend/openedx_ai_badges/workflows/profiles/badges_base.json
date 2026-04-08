@@ -10,8 +10,9 @@
           "provider": "openai",
       },
       "SkillsProcessor": {
-          "function": "generate_skills",
-          "provider": "openai",
+          "function": "generate_skills_laiser_api",
+          // "function": "generate_skills",
+          // "provider": "openai",
       }
   },
   "actuator_config": {

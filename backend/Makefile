@@ -70,6 +70,9 @@ requirements: clean_tox piptools ## install development environment requirements
 	# So that the plugin entrypoints are installed and loaded correctly.
 	pip install -e .
 
+requirements-laiser: ## install optional LAiSER local extractor dependencies (CPU mode)
+	pip install -r requirements/laiser.in
+
 test: clean ## run tests in the current virtualenv
 	pytest
 
