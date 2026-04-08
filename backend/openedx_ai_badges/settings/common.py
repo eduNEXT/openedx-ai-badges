@@ -45,3 +45,9 @@ def plugin_settings(settings):
     settings.LAISER_API_KEY = ""
     settings.LAISER_API_TIMEOUT_SECONDS = 90
     settings.LAISER_API_POLL_INTERVAL_SECONDS = 2
+
+    # -------------------------
+    # LAiSER local
+    # -------------------------
+    settings.LAISER_MODEL_ID = ""
+    settings.LAISER_HF_TOKEN = ""

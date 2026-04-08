@@ -4,6 +4,7 @@ Badge processor module for generating Open Badges 3.0 BadgeClass definitions.
 import json
 import logging
 import time
+from functools import lru_cache
 from pathlib import Path
 
 import requests
@@ -11,6 +12,13 @@ from django.conf import settings
 from openedx_ai_extensions.processors import LLMProcessor
 
 logger = logging.getLogger(__name__)
+
+
+@lru_cache(maxsize=4)
+def _get_laiser_extractor(model_id, hf_token, use_gpu):
+    """Return a cached Skill_Extractor instance keyed by (model_id, hf_token, use_gpu)."""
+    from laiser.skill_extractor import Skill_Extractor  # pylint: disable=import-error,import-outside-toplevel
+    return Skill_Extractor(AI_MODEL_ID=model_id, HF_TOKEN=hf_token, use_gpu=use_gpu)
 
 
 class BaseBadgeLLMProcessor(LLMProcessor):
@@ -100,6 +108,58 @@ class SkillsProcessor(BaseBadgeLLMProcessor):
         prompt = self.fill_prompt(prompt)
         result = self._call_completion_wrapper(system_role=prompt)
         return result
+
+    def generate_skills_laiser_local(self):
+        """
+        Extract skills from course context using the LAiSER library running in-process.
+
+        Initializes Skill_Extractor once per (model_id, hf_token, use_gpu) combination
+        and caches it for subsequent calls. Wraps the context in a DataFrame, runs
+        extraction, enriches results with ESCO metadata, and normalizes to the internal
+        skills alignment format.
+        """
+        try:
+            import pandas as pd  # pylint: disable=import-outside-toplevel
+        except ImportError as exc:
+            logger.error("LAiSER local: pandas not installed: %s", exc)
+            return {"error": f"pandas not available: {exc}"}
+
+        model_id = self.config.get("model_id") or getattr(settings, "LAISER_MODEL_ID", "")
+        hf_token = self.config.get("hf_token") or getattr(settings, "LAISER_HF_TOKEN", "")
+        use_gpu = self.config.get("use_gpu", False)
+        top_k = self.config.get("top_k", 10)
+
+        if not model_id:
+            logger.error("LAiSER local: LAISER_MODEL_ID is not configured")
+            return {"error": "LAISER_MODEL_ID is not configured"}
+
+        try:
+            extractor = _get_laiser_extractor(model_id, hf_token, use_gpu)
+        except Exception as exc:  # pylint: disable=broad-exception-caught
+            logger.error("LAiSER local: failed to initialize extractor: %s", exc)
+            return {"error": f"LAiSER extractor initialization failed: {exc}"}
+
+        data = pd.DataFrame({"id": ["badge_1"], "description": [self.context or ""]})
+
+        try:
+            result_df = extractor.extractor(
+                data=data,
+                id_column="id",
+                text_columns=["description"],
+                input_type="job_desc",
+                top_k=top_k,
+                levels=False,
+                warnings=False,
+            )
+        except Exception as exc:  # pylint: disable=broad-exception-caught
+            logger.error("LAiSER local: extraction failed: %s", exc)
+            return {"error": f"LAiSER extraction failed: {exc}"}
+
+        raw_skills = result_df.to_dict("records") if isinstance(result_df, pd.DataFrame) else []
+
+        skills = [self._normalize_laiser_local_skill(s, extractor) for s in raw_skills]
+        return {"response": json.dumps({"skills": skills}), "status": "success"}
+
     def generate_skills_laiser_api(self):
         """
         Submit course context to the LAiSER API and poll for extracted skills.
@@ -197,4 +257,30 @@ class SkillsProcessor(BaseBadgeLLMProcessor):
             "correlation_coefficient": skill.get("Correlation Coefficient", 0),
             "task_abilities": [],
             "knowledge_required": [],
+        }
+
+    @staticmethod
+    def _normalize_laiser_local_skill(skill: dict, extractor) -> dict:
+        """Map a LAiSER local extractor result row to the internal skills alignment format."""
+        raw_skill = skill.get("Raw Skill", "")
+
+        target_description = ""
+        target_url = ""
+        if raw_skill and getattr(extractor, "esco_df", None) is not None:
+            match = extractor.esco_df[extractor.esco_df["preferredLabel"] == raw_skill]
+            if not match.empty:
+                row = match.iloc[0]
+                target_description = row.get("description", "")
+                target_url = row.get("conceptUri", "")
+
+        return {
+            "type": "Alignment",
+            "skill_tag": skill.get("Skill Tag", ""),
+            "target_name": raw_skill,
+            "target_description": target_description,
+            "target_url": target_url,
+            "target_type": "ESCO:Skill",
+            "correlation_coefficient": skill.get("Correlation Coefficient", 0),
+            "task_abilities": skill.get("Task Abilities", []),
+            "knowledge_required": skill.get("Knowledge Required", []),
         }

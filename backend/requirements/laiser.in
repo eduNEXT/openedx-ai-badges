@@ -1,0 +1,6 @@
+# Optional requirements for running the LAiSER local skill extractor.
+# Install with: pip install -r requirements/laiser.txt
+# or: make requirements-laiser
+
+laiser[cpu]  # LAiSER local skill extraction (CPU mode)
+pandas       # Required by the LAiSER extractor
