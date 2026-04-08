@@ -37,3 +37,11 @@ def plugin_settings(settings):
     settings.MIT_SLM_OLLAMA_URL = ""
     settings.MIT_SLM_OLLAMA_TOKEN = ""
     settings.MIT_DCC_BADGE_API_HEALTH_URL = "http://mit-slm:8000/health"
+
+    # -------------------------
+    # LAiSER API
+    # -------------------------
+    settings.LAISER_API_BASE_URL = ""
+    settings.LAISER_API_KEY = ""
+    settings.LAISER_API_TIMEOUT_SECONDS = 90
+    settings.LAISER_API_POLL_INTERVAL_SECONDS = 2
