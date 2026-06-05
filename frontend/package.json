@@ -1,6 +1,6 @@
 {
   "name": "@openedx/openedx-ai-badges-ui",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "AI Badges UI component for Open edX utilizing Frontend Plugin Framework",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
