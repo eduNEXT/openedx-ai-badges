@@ -1,1 +1,1 @@
-await import("@openedx/openedx-ai-badges-ui");
+await import("@openedx/openedx-ai-badges");

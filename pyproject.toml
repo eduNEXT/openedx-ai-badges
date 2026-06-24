@@ -49,20 +49,22 @@ Issues = "https://github.com/openedx/openedx-ai-badges/issues"
 Changelog = "https://github.com/openedx/openedx-ai-badges/blob/main/CHANGELOG.rst"
 Community = "https://discuss.openedx.org"
 
-# hatch-specific configuration
-[tool.hatch.metadata.hooks.custom]
-path = "tutor/.hatch_build.py"
-
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+version_scheme = "only-version"
+local_scheme = "no-local-version"
 
 [tool.hatch.build.targets.sdist]
 # Disable strict naming, otherwise twine is not able to detect name/version
 strict-naming = false
 include = [
     "/tutor/openedx_ai_badges",
-    "/tutor/.hatch_build.py",
     "/backend",
     "/frontend"
 ]
@@ -97,3 +99,4 @@ deps =
 commands =
     sphinx-build -b html -W --keep-going . _build/html
 """
+

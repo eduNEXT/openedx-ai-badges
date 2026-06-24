@@ -1,5 +1,7 @@
 """
-A experimental plugin for Open edX designed to explore AI extensibility.
+A sample backend plugin for the Open edX Platform.
 """
 
-__version__ = "1.6.1"
+from importlib.metadata import version as get_version
+
+__version__ = get_version(__package__)
