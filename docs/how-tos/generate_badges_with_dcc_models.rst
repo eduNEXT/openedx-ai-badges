@@ -25,8 +25,8 @@ This plugin builds on top of `openedx-ai-extensions
 <https://github.com/openedx/openedx-ai-extensions>`_, which must be
 installed and configured first. Follow the `AI Extensions documentation
 <https://docs.openedx.org/projects/openedx-ai-extensions/en/latest/index.html>`_,
-then install this plugin as described in the `installation section of the
-README <https://github.com/eduNEXT/openedx-ai-badges#installation>`_::
+then install this plugin as described in the installation section of the
+:doc:`README <../readme>`::
 
     pip install git+https://github.com/openedx/openedx-ai-badges.git
     tutor plugins enable openedx-ai-badges

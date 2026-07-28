@@ -86,9 +86,9 @@ In summary:
 1. **Configure Providers**: Ensure you have configured your AI providers as described in the
    `AI Extensions Configuration Guide <https://docs.openedx.org/projects/openedx-ai-extensions/en/latest/quickstarts/configuration_guide.html#configuring-providers>`_.
 
-2. **Setup AI Profile**:
+2. **Set up AI Profile**:
 
-   - Go to the Django Admin, under *Open edX AI Extensions > Ai workflow profiles*.
+   - Go to the Django Admin, at ``/admin/openedx_ai_extensions/aiworkflowprofile/``.
 
    - Create an AI **Profile** and set its *Base filepath* to ``badges_base`` (or to
      ``mit_dcc_badges`` for the MIT SLM workflow).
