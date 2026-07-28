@@ -26,7 +26,7 @@ This plugin builds on top of `openedx-ai-extensions
 installed and configured first. Follow the `AI Extensions documentation
 <https://docs.openedx.org/projects/openedx-ai-extensions/en/latest/index.html>`_,
 then install this plugin as described in the installation section of the
-:doc:`README <../readme>`::
+`README <../../README.rst>`_::
 
     pip install git+https://github.com/openedx/openedx-ai-badges.git
     tutor plugins enable openedx-ai-badges
@@ -61,7 +61,8 @@ setting rather than a Tutor variable; override it only if the service runs
 somewhere else.
 
 For the full service architecture, hosting options, and the complete list
-of configuration variables, see :doc:`../references/mit_slm_orchestrator`.
+of configuration variables, see `MIT SLM Orchestrator
+<../references/mit_slm_orchestrator.rst>`_.
 
 
 Step 1: Create the AI workflow profile
@@ -95,7 +96,7 @@ Select *Add* and fill in:
        Patch (RFC 7386) — comments and trailing commas allowed — applied
        on top of the base template.
 
-.. image:: /_static/admin-workflow-profile.png
+.. image:: ../_static/admin-workflow-profile.png
    :alt: Django admin form for an AI workflow profile using the mit_dcc_badges template
    :width: 100%
 
@@ -143,7 +144,7 @@ Select *Add* and fill in:
    * - **Enabled**
      - Checked.
 
-.. image:: /_static/admin-workflow-scope.png
+.. image:: ../_static/admin-workflow-scope.png
    :alt: Django admin form for an AI workflow scope pointing at the badges UI slot
    :width: 100%
 
@@ -163,19 +164,19 @@ Studio access to the course.
 
 Open Studio and select a course.
 
-.. image:: /_static/studio-home-course-list.png
+.. image:: ../_static/studio-home-course-list.png
    :alt: Studio home listing the available courses
    :width: 100%
 
 From the course, open **Content > Pages & Resources**.
 
-.. image:: /_static/studio-content-pages-resources.png
+.. image:: ../_static/studio-content-pages-resources.png
    :alt: The Content menu in Studio with Pages and Resources highlighted
    :width: 100%
 
 Scroll to the **AI Extensions Settings** card and select it.
 
-.. image:: /_static/pages-resources-ai-extensions-card.png
+.. image:: ../_static/pages-resources-ai-extensions-card.png
    :alt: The AI Extensions Settings card in Pages and Resources
    :width: 100%
 
@@ -184,7 +185,7 @@ already generated for the course. The message under the introduction comes
 from the profile's ``customMessage``, so it tells you which workflow is
 active — useful when several profiles are in play.
 
-.. image:: /_static/ai-badges-tab-gallery.png
+.. image:: ../_static/ai-badges-tab-gallery.png
    :alt: The AI Badges tab showing the gallery of generated badges
    :width: 100%
 
