@@ -74,22 +74,32 @@ Usage
 ******
 
 The **openedx-ai-badges** plugin extends the base AI framework by providing specialized
-badge-generation workflows. To use it:
+badge-generation workflows.
+
+For a step-by-step walkthrough with screenshots — creating the AI profile and scope in
+the Django Admin, opening the badge editor in Studio, and generating, refining and
+publishing a badge — see
+`Generate Badges with the MIT DCC Models <docs/how-tos/generate_badges_with_dcc_models.rst>`_.
+
+In summary:
 
 1. **Configure Providers**: Ensure you have configured your AI providers as described in the
    `AI Extensions Configuration Guide <https://docs.openedx.org/projects/openedx-ai-extensions/en/latest/quickstarts/configuration_guide.html#configuring-providers>`_.
 
-2. **Setup AI Profile**:
+2. **Set up AI Profile**:
 
-   - Go to the Django Admin.
+   - Go to the Django Admin, at ``/admin/openedx_ai_extensions/aiworkflowprofile/``.
 
-   - Create or edit an AI **Profile** and set the implementation to ``badges_base``.
+   - Create an AI **Profile** and set its *Base filepath* to ``badges_base`` (or to
+     ``mit_dcc_badges`` for the MIT SLM workflow).
 
 3. **Assign Scope**:
 
-   - Create an AI **Scope** (e.g., for CMS/Studio).
+   - Create an AI **Scope** with *Service variant* ``CMS - Studio`` and *Ui slot
+     selector id* ``authoring-resources-ai-badge-creator-modal``.
 
-   - Link the scope to your ``badges_base`` profile.
+   - Link the scope to the profile created above. Leave *Course id* blank to enable
+     the workflow in every course.
 
 4. **Trigger Badge Generation**:
 
