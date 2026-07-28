@@ -1,7 +1,4 @@
 References
 ##########
 
-.. toctree::
-   :maxdepth: 1
-
-   mit_slm_orchestrator
+* `MIT SLM Orchestrator <mit_slm_orchestrator.rst>`_

@@ -1,7 +1,4 @@
 How-tos
 #######
 
-.. toctree::
-   :maxdepth: 1
-
-   generate_badges_with_dcc_models
+* `Generate Badges with the MIT DCC Models <generate_badges_with_dcc_models.rst>`_

@@ -109,8 +109,10 @@ source_suffix = '.rst'
 #
 # source_encoding = 'utf-8-sig'
 
-# The top level toctree document.
-top_level_doc = 'index'
+# The document holding the root toctree. It is not `index` because every other
+# page is written to render in the GitHub interface, where `toctree` is not a
+# known directive. See docs/contents.rst.
+root_doc = 'contents'
 
 # Set display_github to False if you don't want "edit on Github" button
 html_context = {
@@ -368,7 +370,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_target = f'{project}.tex'
 latex_documents = [
-    (top_level_doc, latex_target, documentation_title,
+    (root_doc, latex_target, documentation_title,
      author, 'manual'),
 ]
 
@@ -410,7 +412,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (top_level_doc, project_title, documentation_title,
+    (root_doc, project_title, documentation_title,
      [author], 1)
 ]
 
@@ -425,7 +427,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (top_level_doc, project_title, documentation_title,
+    (root_doc, project_title, documentation_title,
      author, project_title, 'A experimental plugin for Open edX designed to explore AI extensibility',
      'Miscellaneous'),
 ]
