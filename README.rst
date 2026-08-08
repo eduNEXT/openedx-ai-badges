@@ -130,7 +130,7 @@ You must manually register the badges UI package in your MFE configuration (For 
          dist: 'src',
       },
       {
-         moduleName: '@openedx/openedx-ai-badges-ui',
+         moduleName: '@openedx/openedx-ai-badges',
          dir: path.resolve(__dirname, '../openedx-ai-badges/frontend'),
          dist: 'src',
       },
@@ -141,7 +141,7 @@ You must manually register the badges UI package in your MFE configuration (For 
 
 .. code-block:: javascript
 
-    import '@openedx/openedx-ai-badges-ui';
+    import '@openedx/openedx-ai-badges';
 
 **2. Backend Development**
 
